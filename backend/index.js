@@ -34,4 +34,3 @@ app.listen(port, ()=>{
     console.log(`Servidor escutando na porta: ${port} `);
 });
 
-export default app;
