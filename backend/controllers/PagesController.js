@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const frontendPathPages = path.join(__dirname, '../../frontend/views')
+const frontendPathPages = path.join(__dirname, '../public/views')
 
 function getHomePage(req, res) {
     return res.sendFile(path.join(frontendPathPages, 'index.html'));

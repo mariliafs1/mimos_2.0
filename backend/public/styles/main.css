@@ -1,0 +1,51 @@
+@import url('./header.css');
+@import url('./carrossel.css');
+@import url('./carrossel2.css');
+@import url('./promocao.css');
+@import url('./newsLetter.css');
+@import url('./footer.css');
+@import url('./sacola.css');
+@import url('./buscar.css');
+@import url('./modalSacola.css');
+@import url('./login.css');
+@import url('./favoritos.css');
+@import url('./buscarCategorizado.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&family=Rum+Raisin&display=swap');
+@import url('./cadastro.css');
+
+
+:root{
+    --cor-de-fundo: #F3F3F3;
+    --roxo: #5E416C;
+    --cinza: #C4C4C4;
+    --rosa: #F0DADA;
+    --cinza-escuro: #373438;
+    --preto: #000000;
+    --fonte-logo-1: "Rum Raisin", sans-serif;
+    --fonte-logo-2: "Reenie Beanie";
+    --fonte: "Poppins", sans-serif;
+   
+}
+
+body{
+    background-color: var(--cor-de-fundo);
+    /* height: 3000px; */
+    font-family: var(--fonte);
+}
+
+/* css dos carrosseis */
+.seta__hide{
+    display: none;
+}
+
+.hide{
+    display: none;
+}
+
+.arrasto__cursor{
+    cursor: grabbing;
+}
+
+.arrasto__seta{
+    scroll-behavior: smooth; 
+}

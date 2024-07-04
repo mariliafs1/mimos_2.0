@@ -1,0 +1,192 @@
+.cabecalho{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    position: fixed;
+    z-index: 2;
+    background-color: var(--cor-de-fundo);
+    width: 100vw;
+    margin: 0 auto;
+    top: 0;
+    max-width: 1400px;
+}
+
+.logo{
+    color: var(--roxo);
+    height: 40px;
+}
+.logo h1{
+    font-family: var(--fonte-logo-1);
+    font-size: 36px;
+}
+.logo p{
+    font-family: var(--fonte-logo-2);
+    font-size: 15px;
+    padding-left: 40px;
+}
+
+.cabecalho_icons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+    width: calc(100%/10);
+}
+
+.cabecalho_icons img{
+    height: 32px;
+}
+.cabecalho_icons img:hover{
+    height: 35px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.cabecalho__icons__sacola, .cabecalho__icons__favoritos{
+    position: relative;
+}
+
+.numero__produtos__sacola, .numero__produtos__favoritos{
+    background-color: red;
+    font-size: 15px;
+    color: white;
+    width: 18px;
+    height: 18px;
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    margin: 0px auto;
+    padding: 2px 0;
+    border-radius: 8px;
+    left: 22px;
+
+}
+
+/* .numero__produtos__sacola:modal{
+    background-color: blue;
+} */
+
+.cabecalho__menu-hamburguer{
+    width: 32px;
+    height: 32px;
+    background-image: url('../img/menu_hamburguer.png');
+    background-size: cover;
+    display: inline-block;
+    
+}
+
+.overlay{
+    
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+}
+
+.overlay_desativado{
+    display: none;
+}
+
+.lista-menu{
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: -16px;
+    box-shadow: 4px 4px 4px  rgba(0,0,0,0.5);
+    z-index: 4;
+}
+
+.cabecalho_botao:checked ~ .lista-menu{
+    display: block;
+}
+
+.cabecalho_botao:checked ~ .menu>span{
+    height: 34px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.cabecalho_botao{
+    display: none;
+}
+
+.lista-menu{
+    background-color: var(--cor-de-fundo);
+    
+
+}
+
+.lista-menu__itens{
+    text-decoration: none;
+    padding: 15px;
+}
+
+.lista-menu__itens:not(:last-child){
+    border-bottom: 1px solid var(--cinza);
+}
+
+
+.lista-menu__itens:hover > a{
+    color: var(--roxo);
+    transition: 0.3s;
+    
+}
+
+.lista__menu__aberto{
+    display: none;
+}
+
+
+/* #dialog{
+    border-radius: 10px;
+    transition: 2s;
+    transform: scale(2);
+    https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal
+    animation-delay: 1s;
+    opacity: 1;
+} */
+
+@media screen and (min-width: 850px){
+    
+
+}
+
+@media screen and (min-width: 1024px){
+    .cabecalho__menu-hamburguer{
+        display: none;
+    }
+
+    .lista-menu__itens{
+        display: none;
+    }
+
+    .lista__menu__aberto{
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        gap: 24px;
+        font-size: 20px;
+    }
+
+    .lista__menu__aberto a:hover{
+        color: var(--roxo);
+        font-size: 22px;
+        transition: 0.3s;
+    }
+    .cabecalho{
+        
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1400px){
+  
+    .cabecalho{      
+        left: calc((100% - 1400px)/2);       
+    }
+}

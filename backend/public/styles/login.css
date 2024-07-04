@@ -1,0 +1,134 @@
+.login{
+    background-color: var(--roxo);
+    padding: 40px;
+    max-width: 1400px;
+    margin: 80px auto 0;
+}
+
+.login__container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 16px 20px 16px ;
+    width: 90%;
+    background-color: var(--cor-de-fundo);
+    border-radius: 8px;
+}
+
+.login__container h1{
+    font-size: 20px;
+    color: var(--cinza-escuro);
+    line-height: 32px;
+}
+
+.login__container form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login__container form h2{
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.login__campo{
+    width: 100%;
+}
+
+.login__container form label{
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.login__container input, .login__container button{
+    border: 1px solid var(--cinza) ;
+    border-radius: 5px;
+    font-family: var(--fonte);
+    padding: 12px;
+}
+.login__container input{
+    width: 100%;
+}
+
+#icon__olho__login{
+    top: 43%;
+    right: 20px;
+}
+.quero__cadastrar{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.login__container button{
+    height: auto;
+    /* margin: 0 auto; */
+}
+
+.login__container input::placeholder{
+    font-family: var(--fonte);
+    
+}
+
+
+.login__container input:focus::placeholder{
+    color: transparent;
+}
+
+
+.login__container form p{
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    color: var(--roxo);
+    font-size: 12px;
+    text-align: end;
+    margin-top: 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.login__container form p:hover{
+    color: var(--cinza);
+}
+
+.login__btn__entrar, .login button, .login h2{
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.login__btn__entrar{
+    background-color: var(--roxo);
+    color: var(--cor-de-fundo);
+    border: none;
+    opacity: 0.6;
+    height: auto;
+}
+
+
+.login__btn__entrar:hover{
+   opacity: 1;
+}
+
+.login__container button:hover{
+    background-color: var(--cinza-escuro);
+    color: var(--cor-de-fundo);
+}
+
+
+@media screen and (min-width: 850px){
+    .login__container{
+        max-width: 500px;
+    }
+    .login__container form{
+        text-align: center;
+        margin: 0 auto;
+    }
+
+}

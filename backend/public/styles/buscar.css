@@ -1,0 +1,96 @@
+.busca{
+    max-width: 1400px;
+    background-color: var(--roxo);
+    padding: 1.2rem 3rem 1.5rem; 
+    margin: 70px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.busca__input{
+    background-color: transparent;
+    border: 1px solid var(--cor-de-fundo);
+    color: var(--cor-de-fundo);
+    border-radius: 32px;
+    padding: 0.6rem;
+    width: 350px;
+    font-size: 15px; 
+    outline: none;
+    text-align: center;
+}
+
+
+.busca__input::placeholder{
+    color: var(--cor-de-fundo);
+    font-family: var(--fonte);
+    font-weight: 200;
+    text-align: center;
+    background-image: url('../img/Lupa.svg');
+    background-repeat: no-repeat;
+    background-position: 1rem;
+    
+}
+
+.busca__input:focus::placeholder{
+    color: transparent;
+    text-align: end;
+
+}
+
+.busca__produto__filtrado{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 75%;
+}
+
+.busca__produto__filtrado .produto{
+    width: 90%;
+    margin-left: 0;
+}
+
+#home{
+    max-width: 1400px;
+    align-items: center;
+    margin: 0 auto;
+ 
+}
+.home__background{
+    width: 100%;
+}
+
+@media screen and (min-width: 551px ) { 
+    .busca__produto__filtrado{
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .busca__produto__filtrado .produto{
+        width: 30%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 850px){
+    .busca__produto__filtrado{
+       width: 100%;
+    }
+
+
+}
+
+@media screen and (min-width: 1200px){
+   .home__background{
+        height: 50vh;
+   }
+   .busca__produto__filtrado .produto{
+        width: 200px;
+        margin-left: 0;
+    }
+}

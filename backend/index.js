@@ -16,7 +16,8 @@ const __dirname = path.dirname(__filename);
 
 // app.set('views', path.join(__dirname, 'views'));
 
-const frontendPath = path.join(__dirname, '../frontend')
+// const frontendPath = path.join(__dirname, '../frontend')
+const frontendPath = path.join(__dirname, './public')
 
 app.use(express.static(frontendPath)); 
 

@@ -1,5 +1,5 @@
 
-setTimeout( ()=>{
+
 const carrossel = document.querySelector('.carrossel__container');
 const setasBtn = document.querySelectorAll('.carrossel__seta');
 const primeiraImg_carrossel = document.querySelectorAll('.carrossel_img')[0];
@@ -28,7 +28,8 @@ const arrastoSeta = (carrosselVar, setasBtnVar, primeiraImg, diff) =>{
     console.log(primeiraImg);
     setasBtnVar.forEach(seta =>{
         seta.addEventListener("click", ()=>{
-            let primeiraImgWidth = primeiraImg.clientWidth + diff;
+            let primeiraImgWidth = 200 + diff;
+            // let primeiraImgWidth = primeiraImg.clientWidth + diff;
             carrosselVar.classList.add("arrasto__seta");
             carrosselVar.scrollLeft += seta.classList.contains('left') ? -primeiraImgWidth : +primeiraImgWidth;
             setTimeout(()=> mostrarSeta(carrosselVar, setasBtnVar), 60);
@@ -54,7 +55,8 @@ const autoSlide = (carrosselVar)=>{
     if(carrosselVar.scrollLeft == (0)) return;
     
     positionDiff2 = Math.abs(positionDiff2);
-    let primeiraImg2Width = primeiraImg2.clientWidth +15;
+    let primeiraImg2Width = 240 +15;
+    // let primeiraImg2Width = primeiraImg2.clientWidth +15;
     let valDifference = primeiraImg2Width - positionDiff2;
     if(carrosselVar.scrollLeft > prevScrollLeft ){
         return carrosselVar.scrollLeft += positionDiff2 > primeiraImg2Width/3 ? valDifference : -positionDiff2;
@@ -177,7 +179,7 @@ function createListenerCarrossel(carrosselArray, eventos, funcoes) {
     });
 }
 
-},500)
+
 
 // carrossel.addEventListener("mousedown", arrastoStart);
 // carrossel.addEventListener("touchstart", arrastoStart);

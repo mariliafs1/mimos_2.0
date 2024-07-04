@@ -1,0 +1,53 @@
+
+
+.promocao{
+    display: flex;
+    max-width: 1400px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.promocao img{
+    width: 100%;  
+}
+
+.carrossel__promocao{
+    background-color: var(--roxo);
+    align-items: center;
+    padding: 62px 0;
+}
+
+.carrossel__promocao h1{
+    color: var(--cor-de-fundo);
+}
+.carrossel__promocao .carrossel2__container::-webkit-scrollbar-thumb {
+    background: var(--cinza-escuro);
+
+  }
+
+  .promo__carrossel__seta{
+    display: flex;
+    height: 30px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-de-fundo);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 46px;
+    cursor:pointer;
+}
+.promo__carrossel__seta img{
+    height: 20px;
+    
+}
+
+.promo__carrossel__seta:first-child{
+    left: -23px;
+ 
+}
+.promo__carrossel__seta:last-child{
+    right: -23px;
+} 
