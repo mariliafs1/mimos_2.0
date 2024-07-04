@@ -14,11 +14,8 @@ const produtosDisponiveis = []; //VARIÁVEL QUE ARMAZENA OS DADOS DO JSON INDICA
 
 async function getAndShowProdutos(){
     try {
-<<<<<<< HEAD
+
         const response = await fetch(`${apiURL}/produtos`);
-=======
-        const response = await fetch('https://mimos-2-0.vercel.app/');
->>>>>>> e9c25af7da904b49eb172d9bdbf6b1beb2179cc1
         const produtos = await response.json();
         showProdutos(produtos);
                 
