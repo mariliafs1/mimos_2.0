@@ -6,18 +6,23 @@ import path from "path";
 import { fileURLToPath } from 'url';
 
 
-connectToDb();
 const app = express();
 const port = 3000;
-app.use(cors());
+app.use(cors({
+    origin: ['https://mimos20-marilia-farias-projects.vercel.app'], //talvez precise tirar o marilia farias projects
+    methods: ["POST", "GET"],
+    credentials: true
+}));
+
+connectToDb();
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // app.set('views', path.join(__dirname, 'views'));
 
-// const frontendPath = path.join(__dirname, '../frontend')
-const frontendPath = path.join(__dirname, './public')
+const frontendPath = path.join(__dirname, '../frontend')
 
 app.use(express.static(frontendPath)); 
 
