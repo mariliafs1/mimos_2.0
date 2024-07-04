@@ -14,6 +14,7 @@ app.use(cors({
     credentials: true
 }));
 
+// app.use(cors()); quando for testar no localhost
 connectToDb();
 
 
