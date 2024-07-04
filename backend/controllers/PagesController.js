@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const frontendPathPages = path.join(__dirname, '../../frontend/views')
 
 function getHomePage(req, res) {
+    console.log('nhaiim');
     return res.sendFile(path.join(frontendPathPages, 'index.html'));
 }
 
