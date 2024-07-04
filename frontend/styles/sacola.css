@@ -1,0 +1,129 @@
+.sacola{
+    max-width: 1400px;
+    text-align: center;
+    margin: 90px auto;
+
+}
+
+.sacola__itens{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* padding: 0 5px; */
+}
+
+.sacola__vazia{
+    border: 2px solid var(--cinza);
+    width: 375px;
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+.sacola__produto__total{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--cinza);
+    border-radius: 10px;
+    width: 375px;
+}
+
+.sacola__produto{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sacola__produto__img{
+    width: 150px;
+    border-radius: 10px;
+}
+
+.sacola__produto__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sacola__preco{
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.sacola__produto__info input{
+   width: 45px;
+   height: 40px;
+   text-align: center;
+   font-size: 16px;
+   border: 1px solid var(--roxo);
+   border-radius: 5px;
+}
+
+
+.lixo{
+    width: 30px;
+    margin: 5px 5px 85px 0;
+    opacity: 0.5;
+    transition: 0.3s;
+   
+}
+
+.lixo:hover{
+    opacity: 1;
+}
+
+.sacola__finalizar{
+    padding: 10px 30px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.sacola__finalizar__subtotal{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--cinza);
+    margin-bottom: 20px;
+}
+
+.finalizar__compra__sacola{
+    background-color: var(--roxo);
+    border: none;
+    color: var(--cor-de-fundo);
+    padding: 8px;
+    border-radius: 8px;
+    opacity: 0.6;
+    transition: 0.5s;
+    font-size: 16px;
+    cursor: pointer;
+}
+.finalizar__compra__sacola:hover{
+    opacity: 1;
+}
+
+
+@media screen and (min-width: 1000px){
+    .sacola{
+    
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       /* flex-direction: column; */
+       margin: 90px auto;
+    }
+
+    .sacola__itens{
+        width: 400px;
+    }
+
+    .sacola__finalizar{
+        padding: 0 0 0;
+        margin: 10px 0;
+        border: 1px solid var(--cinza);
+        width: 400pc;
+        border: none;
+    }
+
+}

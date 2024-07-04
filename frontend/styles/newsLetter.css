@@ -1,0 +1,137 @@
+.news__letter{
+    background-color: var(--cor-de-fundo);
+    max-width: 1400px;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 ;
+    justify-content: center;
+    
+}
+
+.news__letter__background{
+    width: 1400px;
+    background-color: var(--rosa);
+    margin-left: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.news__letter__container{
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.news__letter__img{
+    padding: 20px 0 0 0;
+    width: 150px;
+}
+
+.news__letter__img img{
+    border-radius: 0 12px 12px 0;
+    width: 100%;
+    border: 5px solid var(--cor-de-fundo);
+    
+}
+
+
+.news__letter__container h1{
+    font-family: var(--fonte-logo-1);
+    font-size: 75px;
+    color: var(--roxo);
+    padding: 0.5rem;
+}
+
+.news__letter__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0 2rem 0;
+}
+.news__letter__form p{
+    color: var(--roxo);
+    font-size: 15px;
+    
+}
+.news__letter__form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.news__letter input{
+    background-color: transparent;
+    border: 2px solid var(--roxo);
+    color: var(--roxo);
+    border-radius: 32px;
+    padding: 0.6rem;
+    width: 350px;
+    font-size: 15px; 
+    outline: none;
+    text-align: center;
+}
+
+
+.news__letter input::placeholder{
+    color: var(--roxo);
+    font-family: var(--fonte);
+    font-weight: 400;
+    text-align: center;
+    background-image: url('../img/email.svg');
+    background-repeat: no-repeat;
+    background-position: 1rem;   
+}
+
+.news__letter input:focus::placeholder{
+    color: transparent;
+    text-align: center; /*aquii*/
+}
+
+.botao__form{
+    background-color: var(--roxo);
+    color: var(--cor-de-fundo);
+    border: none;
+    width: 130px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: var(--fonte);
+    padding: 10px;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.botao__form:hover{
+    opacity: 1;
+}
+
+@media screen and (min-width: 550px) {
+    .news__letter__container h1{
+        font-size: 100px;
+    }
+
+    .news__letter__background{
+        margin-left: 12%;
+        padding: 20px 0 0 0;
+    }
+    .news__letter__img{
+        width: 230px;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .news__letter__container h1{
+        font-size: 200px;
+    }
+
+ 
+    .news__letter__img{
+        width: 300px;
+    }
+}
