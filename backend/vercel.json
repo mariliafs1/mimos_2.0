@@ -1,21 +1,12 @@
 {
     "version":2,
-    "env": {
-        "DEV_API_URL": "http://localhost:3000",
-        "PROD_API_URL": "https://mimos-2-0.vercel.app"
-      },
     "builds":[
         {"src":"*.js", "use":"@vercel/node"}
     ],
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"/index.js"
+            "dest":"/"
         }
-    ],
-    "functions": {
-        "api/*.js": {
-          "maxDuration": 60
-        }
-      }
+    ]
 }
