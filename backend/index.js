@@ -31,6 +31,13 @@ app.use(express.urlencoded());
 
 app.use('/', routes)
 
+app.get('/env', (req, res) => {
+    res.json({
+      apiURL: process.env.NODE_ENV === 'production' ? process.env.PROD_API_URL : process.env.DEV_API_URL
+    });
+  });
+
+
 app.listen(port, ()=>{
     console.log(`Servidor escutando na porta: ${port} `);
 });

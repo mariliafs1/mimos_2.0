@@ -1,4 +1,9 @@
-import dotenv from 'dotenv'
+document.addEventListener('DOMContentLoaded', async () => {
+    const response = await fetch('/env');
+    const env = await response.json();
+    const apiURL = env.apiURL;
+
+
 let carrosselUltimosLancamentos = document.querySelector("#carrossel__ultimos__lancamentos")
 let carrosselPromo = document.querySelector("#carrossel__promo");
 const carrossel2 = document.querySelector('#carrossel__ultimos__lancamentos');
@@ -6,9 +11,7 @@ const carrossel = document.querySelector('.carrossel__container');
 let carrinho = JSON.parse(localStorage.getItem('carrinho') ) || [];
 let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-dotenv.config();
 
-const apiURL = process.env.NODE_ENV === 'production' ? process.env.PROD_API_URL : process.env.DEV_API_URL;
 
 const produtosDisponiveis = []; //VARIÁVEL QUE ARMAZENA OS DADOS DO JSON INDICANDO UMA LISTA DE PRODUTOS DISPONÍVEIS NA LOJA
 
@@ -56,3 +59,4 @@ function showProdutos(produtos){
             }
         })
 }
+});
