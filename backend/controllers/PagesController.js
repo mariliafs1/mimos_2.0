@@ -9,10 +9,17 @@ const __dirname = path.dirname(__filename);
 const frontendPathPages = path.join(__dirname, '../../frontend/views')
 
 function getHomePage(req, res) {
-    console.log('nhaiim');
     return res.sendFile(path.join(frontendPathPages, 'index.html'));
 }
 
-const PagesController = {getHomePage}
+function getLoginPage(req, res){
+    return res.sendFile(path.join(frontendPathPages, 'login.html'));
+}
+
+function getCadastroPage(req, res){
+    return res.sendFile(path.join(frontendPathPages, 'cadastro.html'));
+}
+
+const PagesController = {getHomePage, getLoginPage, getCadastroPage}
 
 export default PagesController

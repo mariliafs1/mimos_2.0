@@ -54,6 +54,7 @@
     transform: translateY(-50%);
     line-height: 46px;
     cursor:pointer;
+    z-index: 3;
 }
 .ultimos__lancamentos__carrossel__seta img{
     height: 20px;

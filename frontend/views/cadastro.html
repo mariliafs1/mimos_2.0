@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimos</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/main.css"> 
+    
+
+    <script src="../scripts/validaFormFunctions.js" type="module" defer></script>
+    <script src="../scripts/validaFormCadastro.js" type="module" defer></script>
+
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="overlay overlay_desativado"></div>
+        <div class="logo">
+            <h1>MIMOS</h1>
+            <p>CUIDADOS</p>
+        </div>
+        <ul class="lista__menu__aberto">
+            <li><a href="#ultimos__lancamentos">Lançamentos</a></li>         
+            <li><a href="#promocao_banner">Promoção</a></li>
+            <li><a href="#news__letter__banner">News Letter</a></li>
+        </ul>
+        <div class="cabecalho_icons">
+            <a href="#"><img class="cabecalho__icons__home" src="img/home.svg" alt="icone de coração"></a>
+            <a href="#" class="cabecalho__icons__favoritos"><div class="numero__produtos__favoritos">0</div><img src="img/coracao.png" alt="icone de coração"></a>
+            <a href="#" class="cabecalho__icons__sacola"><div class="numero__produtos__sacola">0</div><img src="img/bolsa.png" alt="icone de bolsa"></a>
+            <a href="#"><img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário"></a>
+            <input type="checkbox" id="menu" class="cabecalho_botao">
+            <label for="menu" class="menu">
+                <span class="cabecalho__menu-hamburguer"></span>
+            </label>
+            <ul class="lista-menu">
+                <li class="lista-menu__itens"><a href="#ultimos__lancamentos">Lançamentos</a></li>
+                <li class="lista-menu__itens"><a href="#promocao_banner">Promoção</a></li>
+                <li class="lista-menu__itens"><a href="#news__letter__banner">News Letter</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="modal__sacola__container">
+        <div class="modal__sacola">
+            <p>Cadastro realizado com sucesso!</p>
+            <button class="modalBtn__sacola__close">Fechar</button> 
+        </div>
+    </div>
+    <section id='cadastro' class="login">
+        <form class="login__container" action="/cadastro/criaUsuario" method="post">
+            <h1>Preencha os campos abaixo para se cadastrar.</h1>
+            <fieldset class="cadastro__campo">
+                <label class="cadastro__etiqueta" for="nome">* Nome:</label>
+                <input type="text" name="nome" id="nome" class="cadastro__escrita" placeholder="Digite seu nome completo..." required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+            
+            <fieldset class="cadastro__campo">
+                <label class="cadastro__etiqueta" for="cpf">* CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="cadastro__escrita cpf"
+                    maxlength="14" 
+                    minlength="14"
+                    required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+            
+            <fieldset class="cadastro__campo">
+                <label class="cadastro__etiqueta" for="nascimento">* Data de nascimento:</label>
+                <input type="date" name="dataNascimento" id="nascimento" class="cadastro__escrita"  required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+            
+            <fieldset class="cadastro__campo">
+                <label class="cadastro__etiqueta" for="email">* E-mail:</label>
+                <input type="email" name="email" id="email__cadastro" class="cadastro__escrita" minlength="4" required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+
+            <fieldset class="cadastro__campo senha__icon__position">
+                <label class="cadastro__etiqueta" for="senha">* Senha:</label>
+                <img id="icon__olho" src="./img/olho_closed.svg" alt="Icone de olho fechado">
+                <input type="password" name="senha" id="senha" class="cadastro__escrita" 
+                minlength="6"      
+                placeholder="Crie uma senha..." required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+
+            <fieldset class="cadastro__campo senha__icon__position">
+                <label class="cadastro__etiqueta" for="senha">* Repita a senha:</label>
+                <img id="icon__olho2" src="./img/olho_closed.svg" alt="Icone de olho fechado">
+                <input type="password" name="senha_repetida" id="repete__senha" class="cadastro__escrita" 
+                minlength="6"   
+                placeholder="Digite a novamente..." required />
+                <span class="mensagem-erro"></span>
+            </fieldset>
+            
+            <fieldset class="cadastro__campo">
+                <div class="cadastro__check">
+                    <input name="termos" class="input__check"  type="checkbox" required />
+                    <p class="termos__texto">
+                        Li e concordo com o <strong>termo de consentimento.</strong>
+                    </p>
+                    <span class="mensagem-erro"></span>
+                </div>
+            </fieldset>
+            <div class="botao__form__cadastrar">
+                <input type="submit" value="CADASTRAR" class="cadastro__botao" id="enviar__cadastro" disabled>
+                <span class="mensagem-erro"></span>
+                <button class="tenho__cadastro">JÁ TENHO CADASTRO</button>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <div class="footer">
+            <div class="footer__duvidas">
+                <div class="footer__menu">
+                    <h2>Dúvidas</h2>
+                </div>
+                <ul>
+                    <li><a href="#">Perguntas Frequentes</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Frete e Entrega</a></li>
+                    <li><a href="#">Trocas e Devoluções</a></li>
+                </ul>
+            </div>
+            <div class="footer__marcas">
+                <div class="footer__menu" nhaiim="ihuu">
+                    <h2>Marcas</h2>
+                </div>
+                <ul>
+                    <li class=><a href="#">Água Perfumada</a></li>
+                        <li class=><a href="#">Amor de Pele</a></li>
+                        <li><a href="#">Make Make</a></li>
+                    </ul>
+                </div>
+                <div class="foorter__relacionamento__cliente">
+                    <div class="footer__menu">
+                        <h2>Fale Conosco</h2>
+                    </div>
+                    <ul>
+                        <li><a href="#">e-mail</a></li>
+                        <li><a href="#">Whatsapp</a></li>
+                        <li><a href="#">Telefone</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="endereco">
+                <p>Av. Senhor Fulano de Tal, 000 - Bairro Sicrana da Silva Sauro - BRASIL</p>
+            </div>
+    </footer>
+    </body>
+
+    </html>

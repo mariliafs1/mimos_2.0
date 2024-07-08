@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const app = express();
 const port = 3000;
 app.use(cors({
-    origin: ['https://mimos-2-0.vercel.app'], //'https://mimos20-marilia-farias-projects.vercel.app'
+    origin: ['https://mimos-3-0.vercel.app'], //'https://mimos20-marilia-farias-projects.vercel.app'
     methods: ["POST", "GET"],
     credentials: true
 }));
