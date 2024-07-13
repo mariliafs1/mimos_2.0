@@ -26,6 +26,6 @@ export const sacolaAutorizada = async(req, res) =>{
     }
 }
 
-export const listarProdutosSacola = async () =>{
-    
-}
+// export const listarProdutosSacola = async () =>{
+
+// }

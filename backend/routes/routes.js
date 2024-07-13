@@ -14,7 +14,7 @@ routes.get("/produto/:id", ProdutoController.getProdutoById)
 routes.get("/login", PagesController.getLoginPage);
 routes.get("/cadastro", PagesController.getCadastroPage);
 routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
-routes.get("/sacola/carrinho", authMiddleware, Sacola.getSacolaProdutos)
+routes.get("/sacola/carrinho", authMiddleware, SacolaController.getSacolaProdutos)
 
 
 
