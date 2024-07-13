@@ -1,4 +1,5 @@
 import path from 'path';
+import serveStatic from 'serve-static';
 
 import { fileURLToPath } from 'url';
 
@@ -20,6 +21,13 @@ function getCadastroPage(req, res){
     return res.sendFile(path.join(frontendPathPages, 'cadastro.html'));
 }
 
-const PagesController = {getHomePage, getLoginPage, getCadastroPage}
+function getSacolaPage(req, res, next){
+    console.log('entrou no getSacola')
+    console.log(req.userId)
+    return res.sendFile(path.join(frontendPathPages, 'sacola2.html'));
+}
+
+
+const PagesController = {getHomePage, getLoginPage, getCadastroPage, getSacolaPage}
 
 export default PagesController

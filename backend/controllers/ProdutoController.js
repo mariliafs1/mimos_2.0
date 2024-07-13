@@ -1,4 +1,4 @@
-import Produto from "../models/Produto.js";
+import {Produto as Produto} from "../models/Produto.js";
 
 const getAllProdutos = async (req, res)=>{
     try {
@@ -22,6 +22,19 @@ const getByCategorie = async(req, res)=>{
     }
 }
 
-const ProdutoController = { getAllProdutos, getByCategorie }
+const getProdutoById = async(req,res) =>{
+    const produtoId = req.params.id;
+    
+    try {
+        const produto = await Produto.findById(produtoId);
+
+        console.log(produto);
+        return res.status(200).send(produto);
+    } catch (error) {
+        res.status(500).send({error: error.message});
+    }
+}
+
+const ProdutoController = { getAllProdutos, getByCategorie, getProdutoById  }
 
 export default ProdutoController;

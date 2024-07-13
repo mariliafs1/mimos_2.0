@@ -10,6 +10,8 @@
 
     <script src="../scripts/validaFormFunctions.js" type="module" defer></script>
     <script src="../scripts/validaFormCadastro.js" type="module" defer></script>
+    <script src="../scripts/header.js" type="module" defer></script>
+    <script src="../scripts/modal.js" type="module" defer></script>
 
 </head>
 <body>
@@ -28,7 +30,7 @@
             <a href="#"><img class="cabecalho__icons__home" src="img/home.svg" alt="icone de coração"></a>
             <a href="#" class="cabecalho__icons__favoritos"><div class="numero__produtos__favoritos">0</div><img src="img/coracao.png" alt="icone de coração"></a>
             <a href="#" class="cabecalho__icons__sacola"><div class="numero__produtos__sacola">0</div><img src="img/bolsa.png" alt="icone de bolsa"></a>
-            <a href="#"><img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário"></a>
+            <a href="#" class="nome__usuario"></a>
             <input type="checkbox" id="menu" class="cabecalho_botao">
             <label for="menu" class="menu">
                 <span class="cabecalho__menu-hamburguer"></span>
@@ -47,11 +49,11 @@
         </div>
     </div>
     <section id='cadastro' class="login">
-        <form class="login__container" action="/cadastro/criaUsuario" method="post">
+        <form class="login__container">
             <h1>Preencha os campos abaixo para se cadastrar.</h1>
             <fieldset class="cadastro__campo">
                 <label class="cadastro__etiqueta" for="nome">* Nome:</label>
-                <input type="text" name="nome" id="nome" class="cadastro__escrita" placeholder="Digite seu nome completo..." required />
+                <input type="text" name="nome" id="nome" class="cadastro__escrita" value='Marilia Faria Santos' placeholder="Digite seu nome completo..." required />
                 <span class="mensagem-erro"></span>
             </fieldset>
             
@@ -60,19 +62,20 @@
                 <input type="text" name="cpf" id="cpf" class="cadastro__escrita cpf"
                     maxlength="14" 
                     minlength="14"
+                    value="01379913470"
                     required />
                 <span class="mensagem-erro"></span>
             </fieldset>
             
             <fieldset class="cadastro__campo">
                 <label class="cadastro__etiqueta" for="nascimento">* Data de nascimento:</label>
-                <input type="date" name="dataNascimento" id="nascimento" class="cadastro__escrita"  required />
+                <input type="date" name="dataNascimento" id="nascimento" class="cadastro__escrita" value="1990-07-02" required />
                 <span class="mensagem-erro"></span>
             </fieldset>
             
             <fieldset class="cadastro__campo">
                 <label class="cadastro__etiqueta" for="email">* E-mail:</label>
-                <input type="email" name="email" id="email__cadastro" class="cadastro__escrita" minlength="4" required />
+                <input type="email" name="email" id="email__cadastro" class="cadastro__escrita" value="mariliafs_@hotmail.com" minlength="4" required />
                 <span class="mensagem-erro"></span>
             </fieldset>
 
@@ -80,7 +83,8 @@
                 <label class="cadastro__etiqueta" for="senha">* Senha:</label>
                 <img id="icon__olho" src="./img/olho_closed.svg" alt="Icone de olho fechado">
                 <input type="password" name="senha" id="senha" class="cadastro__escrita" 
-                minlength="6"      
+                minlength="6"
+                value="123456"      
                 placeholder="Crie uma senha..." required />
                 <span class="mensagem-erro"></span>
             </fieldset>
@@ -89,7 +93,8 @@
                 <label class="cadastro__etiqueta" for="senha">* Repita a senha:</label>
                 <img id="icon__olho2" src="./img/olho_closed.svg" alt="Icone de olho fechado">
                 <input type="password" name="senha_repetida" id="repete__senha" class="cadastro__escrita" 
-                minlength="6"   
+                minlength="6"
+                value="123456"   
                 placeholder="Digite a novamente..." required />
                 <span class="mensagem-erro"></span>
             </fieldset>

@@ -1,4 +1,5 @@
 import ValidaForm from "./validaFormFunctions.js";
+import Modal from "./modal.js";
 
 const camposDoCadastro = document.querySelector('#cadastro').querySelectorAll("[required]");
 const inputCPF = document.querySelector(".cpf");
@@ -10,7 +11,11 @@ const inputSenhaRepete = document.querySelector('#repete__senha');
 
 const botaoSubmit = document.querySelector('#enviar__cadastro');
 const termoCheck = document.querySelector('.input__check');
-const btnJaTenhoCadastro = document.querySelector('.botao__form__cadastrar');
+const btnJaTenhoCadastro = document.querySelector('.tenho__cadastro');
+
+const formCadastro = document.querySelector('#cadastro form');
+
+
 
 
 
@@ -28,6 +33,7 @@ camposDoCadastro.forEach((campo)=>{
 });
 
 
+formCadastro.addEventListener('submit', (e)=>cadastrado(e));
 
 
 function habilitaCadastro(){
@@ -35,6 +41,38 @@ function habilitaCadastro(){
     validadorForm ? botaoSubmit.setAttribute('Disabled', "") : botaoSubmit.removeAttribute('Disabled');
 }
 
+
+async function cadastrado(e){
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const usuario = Object.fromEntries(formData.entries());
+    console.log(usuario);
+
+    try{
+        const response = await fetch("/cadastro/registraUsuario",{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(usuario)
+        });
+        const data = await response.json();
+        console.log('Resposta do backend:', data);
+
+        // Exemplo de modal usando Bootstrap (ou outro framework/modal de sua escolha)
+        if (data.message=="usuario criado com sucesso") {
+            Modal.openModal(data.message, "http://localhost:3000/login");
+        }else{
+            Modal.openModal(data.message)
+        }
+    } catch (error) {
+        console.error('Erro na solicitação:', error.message);
+        Modal.openModal(error.message);
+
+    }
+
+}
 
 
 

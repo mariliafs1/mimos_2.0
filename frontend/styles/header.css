@@ -91,6 +91,22 @@
     display: none;
 }
 
+.logout{
+    position: absolute;
+    top: 119%;
+    background-color: var(--cor-de-fundo);
+    padding: 10px;
+    box-shadow: 4px 4px 4px  rgba(0,0,0,0.5);
+    border-radius: 8px;
+    z-index: 4;
+    transition: 0.5s;
+}
+
+.logout:hover{
+   color: rgba(0,0,0,0.5);
+   cursor: pointer;
+}
+
 .lista-menu{
     display: none;
     position: absolute;

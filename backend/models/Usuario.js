@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import {produtoSchema as produtoSchema} from "./Produto.js"
+import sacolaItemSchema from "./Sacola.js";
 
 const usuarioSchema = new mongoose.Schema({
     nome:{
@@ -6,7 +8,7 @@ const usuarioSchema = new mongoose.Schema({
         required: true,
     },
     cpf:{
-        type: Number,
+        type: String,
         required: true,
     },
     dataNascimento:{
@@ -23,10 +25,17 @@ const usuarioSchema = new mongoose.Schema({
     senha:{
         type: String,
         required: true,
-        select: false
+    },
+    carrinho: {
+        type: [sacolaItemSchema],
+        default: []
+    },
+    favoritos: {
+        type: [produtoSchema],
+        default: []
     }
 });
 
-const Usuario = usuarioSchema.model("Usuarios", usuarioSchema);
+const Usuario = mongoose.model("Usuarios", usuarioSchema);
 
 export default Usuario;

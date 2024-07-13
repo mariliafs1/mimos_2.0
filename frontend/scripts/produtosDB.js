@@ -1,3 +1,4 @@
+import Modal from "./modal.js";
 document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/env');
     const env = await response.json();
@@ -58,5 +59,36 @@ function showProdutos(produtos){
                 carrosselPromo.innerHTML += container;
             }
         })
+    let produtosBtn = document.querySelectorAll('.produto__infos-botao button');
+
+    produtosBtn.forEach( (btn) => {
+        btn.addEventListener('click', ()=>adicionaProdutoSacola(btn.id));
+    })
+
 }
 });
+
+const adicionaProdutoSacola = async (btnId) =>{
+    console.log(btnId)
+    try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(`/sacola/${btnId}`,{
+            method: 'POST',
+            headers:{
+                'authorization': `Bearer ${token}`,
+                'Content-Type':'application/json'
+            }
+        });
+        
+        if(response.ok){
+            console.log('poduto adicionado na sacola');
+            Modal.openModal('Produto adicionado na sacola!')
+        }else{
+            const errorData = await response.json();
+            console.error('Erro na resposta:', errorData.message);
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}

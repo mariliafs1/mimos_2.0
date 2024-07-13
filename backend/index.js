@@ -4,6 +4,8 @@ import { connectToDb } from "./database/db.js";
 import cors from 'cors';
 import path from "path";
 import { fileURLToPath } from 'url';
+import bodyParser from 'body-parser'
+
 
 
 const app = express();
@@ -26,8 +28,13 @@ const __dirname = path.dirname(__filename);
 const frontendPath = path.join(__dirname, '../frontend')
 
 app.use(express.static(frontendPath)); 
-
 app.use(express.urlencoded());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const frontendPathPages = path.join(__dirname, '../frontend/views');
+
 
 app.use('/', routes)
 
