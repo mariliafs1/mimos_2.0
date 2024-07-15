@@ -11,7 +11,6 @@ const loginOlho = document.querySelector('#icon__olho__login');
 const inputSenhaLogin = document.querySelector('#senha__login');
 const botaoSubmit = document.querySelector('.login__btn__entrar');
 const formLogin = document.querySelector('#login form')
-console.log(formLogin)
 
 const cadastroBtn = document.querySelector('.quero__cadastrar');
 
@@ -34,6 +33,8 @@ async function loginAutenticacao(e){
     e.preventDefault();
     const formData = new FormData(formLogin);
     const login = Object.fromEntries(formData.entries());
+    console.log(login);
+    console.log(JSON.stringify(login));
 
     try{
         const response = await fetch(`${apiURL}/login/loginUsuario`,{

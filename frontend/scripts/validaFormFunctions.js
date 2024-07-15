@@ -60,7 +60,6 @@ function verificaCampo(campo){
     if(campo.name == "cpf" ){ 
         ehUmCPF(campo);
     }
-    console.log(campo.value);
 
     if(campo.name == 'senha_repetida' && !verificaSenhaRepetida(campo) && campo.value != ''){
         campo.setCustomValidity('Senhas diferentes.');  

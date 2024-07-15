@@ -70,8 +70,10 @@ function iconAlteraNumeroDeProdutosSacola(){
 const headerLogado = ()=>{
     const usuarioLogado = document.querySelector('.nome__usuario')
     const usuario = JSON.parse(localStorage.getItem('user')) || [];
+    if(usuario.length != 0){
     let userName = usuario.nome.split(' ')[0];
-    usuarioLogado.innerHTML = `<img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário">${userName}`
+        usuarioLogado.innerHTML = `<img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário">${userName}`
+    }
     
 }
 
