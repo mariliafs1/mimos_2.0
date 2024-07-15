@@ -46,7 +46,7 @@ async function loginAutenticacao(e){
         });
 
         const data = await response.json();
-        console.log('Resposta do backend:', data);
+        console.log('Resposta do backend:', data.message);
 
         if(data.message == "Autenticação realizada com sucesso"){
             const token = data.token;
