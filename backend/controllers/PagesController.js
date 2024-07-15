@@ -22,7 +22,6 @@ function getCadastroPage(req, res){
 }
 
 function getSacolaPage(req, res, next){
-    console.log('entrou no getSacola')
     console.log(req.userId)
     return res.sendFile(path.join(frontendPathPages, 'sacola2.html'));
 }

@@ -28,7 +28,6 @@ export const authMiddleware = (req, res, next) =>{
             if(error){
                 return res.status(401).send({message: 'Autorização negada: token inválido!'})
             }
-            console.log(decodificado)
             req.userId = decodificado.id;
             return next();
         })

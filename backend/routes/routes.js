@@ -13,9 +13,12 @@ routes.get("/produto/:id", ProdutoController.getProdutoById)
 
 routes.get("/login", PagesController.getLoginPage);
 routes.get("/cadastro", PagesController.getCadastroPage);
-routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
-routes.get("/sacola/carrinho", authMiddleware, SacolaController.getSacolaProdutos)
 
+routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
+routes.get("/sacola/:id", SacolaController.getSacolaProdutos);
+routes.post("/sacola/:id", authMiddleware, SacolaController.addProduto);
+routes.delete("/sacola/:id", authMiddleware, SacolaController.deleteProduto);
+routes.put("/sacola/:id", authMiddleware, SacolaController.updateSacola);
 
 
 
@@ -28,6 +31,5 @@ routes.post("/login/loginUsuario", UsuarioController.loginUsuario);
 routes.get("/usuario/:email_login", authMiddleware, UsuarioController.getUsuarioPorLogin)
 
 //rotas carrinho
-routes.post("/sacola/:id", authMiddleware, SacolaController.addProduto);
 
 export default routes;
