@@ -1,6 +1,10 @@
 import Modal from "./modal.js";
 import { sacolaAutorizada } from "./sacola.js";
 
+const response = await fetch('/env');
+const env = await response.json();
+const apiURL = env.apiURL;
+
 const hamburguerBtn = document.querySelector('.cabecalho_botao');
 const overlay = document.querySelector('.overlay');
 const sacolaIcon = document.querySelector('.cabecalho__icons__sacola');
@@ -49,7 +53,7 @@ const trocarPagina = async (pagina)=>{
             logout.classList.add('hide');
         }       
     }else{
-        window.location.href = `http://localhost:3000/${pagina}`
+        window.location.href = `${apiURL}/${pagina}`
     }
 }
 

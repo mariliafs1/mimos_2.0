@@ -1,6 +1,10 @@
 import ValidaForm from "./validaFormFunctions.js";
 import Modal from "./modal.js";
 
+const response = await fetch('/env');
+const env = await response.json();
+const apiURL = env.apiURL;
+
 const camposDoLogin = document.querySelector('#login').querySelectorAll("[required]");
 const loginOlho = document.querySelector('#icon__olho__login');
 
@@ -21,7 +25,7 @@ cadastroBtn.addEventListener('click', mudarPaginaParaCadastro);
 botaoSubmit.addEventListener('click', (e)=>loginAutenticacao(e))
 
 function mudarPaginaParaCadastro(){
-    window.location.href = "http://localhost:3000/cadastro"
+    window.location.href = `${apiURL}/cadastro`
 }
 
 loginOlho.addEventListener('click', (e)=>ValidaForm.toggleMostrarSenha(e, inputSenhaLogin));
@@ -63,7 +67,7 @@ async function loginAutorizado(email_login){
     const token = localStorage.getItem('authToken');
 
     try {
-        const response = await fetch(`http://localhost:3000/usuario/${email_login}`,{
+        const response = await fetch(`${apiURL}/usuario/${email_login}`,{
             method:'get',
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -76,7 +80,7 @@ async function loginAutorizado(email_login){
 
         if(data.message=='logado com sucesso!'){
             localStorage.setItem('user', JSON.stringify(data.usuario));
-            window.location.href = "http://localhost:3000/"
+            window.location.href = `${apiURL}/`
         }
 
 

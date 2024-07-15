@@ -1,6 +1,10 @@
 import ValidaForm from "./validaFormFunctions.js";
 import Modal from "./modal.js";
 
+const response = await fetch('/env');
+const env = await response.json();
+const apiURL = env.apiURL;
+
 const camposDoCadastro = document.querySelector('#cadastro').querySelectorAll("[required]");
 const inputCPF = document.querySelector(".cpf");
 const senhaOlho = document.querySelector('#icon__olho')
@@ -20,7 +24,7 @@ const formCadastro = document.querySelector('#cadastro form');
 
 
 btnJaTenhoCadastro.addEventListener('click', ()=>{
-    window.location.href = "http://localhost:3000/login"
+    window.location.href = `${apiURL}/login`
 })
 
 inputCPF.addEventListener('keypress',(e)=>ValidaForm.formataCPF(inputCPF,e));
@@ -62,7 +66,7 @@ async function cadastrado(e){
 
         // Exemplo de modal usando Bootstrap (ou outro framework/modal de sua escolha)
         if (data.message=="usuario criado com sucesso") {
-            Modal.openModal(data.message, "http://localhost:3000/login");
+            Modal.openModal(data.message, `${apiURL}/login`);
         }else{
             Modal.openModal(data.message)
         }
