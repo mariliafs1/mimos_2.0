@@ -36,7 +36,7 @@ async function loginAutenticacao(e){
     const login = Object.fromEntries(formData.entries());
 
     try{
-        const response = await fetch("/login/loginUsuario",{
+        const response = await fetch(`${apiURL}/login/loginUsuario`,{
             method:'post',
             headers:{
                 'content-type':'application/json'
