@@ -54,7 +54,7 @@ async function cadastrado(e){
     console.log(usuario);
 
     try{
-        const response = await fetch("/cadastro/registraUsuario",{
+        const response = await fetch(`${apiURL}/cadastro/registraUsuario`,{
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'
