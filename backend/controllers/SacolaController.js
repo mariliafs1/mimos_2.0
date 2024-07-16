@@ -2,6 +2,7 @@ import Usuario from "../models/Usuario.js";
 import  {Produto}  from "../models/Produto.js";
 
 
+
 const addProduto = async (req, res)=>{
     try {
             const produtoId = req.params.id;
@@ -39,7 +40,7 @@ const addProduto = async (req, res)=>{
 
 const getSacolaProdutos = async(req, res) =>{
     try {
-        const userId = req.params.id;
+        const userId = req.userId;
       
         // const usuario = await Usuario.findById(userId);
         const usuario =  await Usuario.findById(userId).populate({
@@ -87,6 +88,8 @@ const updateSacola = async (req, res) =>{
     const produtoId = req.params.id;
     const userId = req.userId;
 
+    const  { quantidadeProduto } = req.body;
+
     console.log(produtoId);
 
     try {
@@ -103,9 +106,10 @@ const updateSacola = async (req, res) =>{
         if(!produtoNoCarrinho){
             res.status(404).json({message: 'Produto não encontrado.'});
         }else{
-            produtoNoCarrinho.quantidade += 1;
+
+            produtoNoCarrinho.quantidade = quantidadeProduto;
             await Usuario.findByIdAndUpdate(userId, usuario);
-            res.status(200).json({message:'quantidade atualizada com sucesso!'})
+            res.status(200).json({message:'quantidade atualizada com sucesso!', carrinho: usuario.carrinho})
         }
 
     } catch (error) {

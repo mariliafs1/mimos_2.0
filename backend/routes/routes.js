@@ -15,7 +15,7 @@ routes.get("/login", PagesController.getLoginPage);
 routes.get("/cadastro", PagesController.getCadastroPage);
 
 routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
-routes.get("/sacola/:id", SacolaController.getSacolaProdutos);
+routes.get("/sacola/:id", authMiddleware, SacolaController.getSacolaProdutos);
 routes.post("/sacola/:id", authMiddleware, SacolaController.addProduto);
 routes.delete("/sacola/:id", authMiddleware, SacolaController.deleteProduto);
 routes.put("/sacola/:id", authMiddleware, SacolaController.updateSacola);

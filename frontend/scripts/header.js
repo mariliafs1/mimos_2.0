@@ -1,5 +1,6 @@
 import Modal from "./modal.js";
-import { sacolaAutorizada } from "./sacola.js";
+import { sacolaAutorizada, getProdutosSacola } from "./sacola.js";
+
 
 const response = await fetch('/env');
 const env = await response.json();
@@ -42,7 +43,6 @@ const trocarPagina = async (pagina)=>{
         if(response){
             Modal.openModal('Faça Login para acessar sua sacola!');
         }
-
     }else if(pagina == 'login' && usuario.length > 0){
         let logout = document.querySelector('.logout');
 
@@ -67,12 +67,15 @@ function iconAlteraNumeroDeProdutosSacola(){
     numeroDeProdutosNaSacola.textContent=quantidadeDeProdutosNaSacola;
 }
 
-const headerLogado = ()=>{
+const headerLogado = async ()=>{
     const usuarioLogado = document.querySelector('.nome__usuario')
     const usuario = JSON.parse(localStorage.getItem('user')) || [];
     if(usuario.length != 0){
-    let userName = usuario.nome.split(' ')[0];
-        usuarioLogado.innerHTML = `<img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário">${userName}`
+        let userName = usuario.nome.split(' ')[0];
+        usuarioLogado.innerHTML = `<img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário">${userName}`;
+        const {carrinho, quantidadeDeProdutosNaSacola} = await getProdutosSacola();
+        numeroDeProdutosNaSacola.textContent = quantidadeDeProdutosNaSacola;
+
     }
     
 }
@@ -83,7 +86,9 @@ const deslogar = () =>{
     logout.classList.add('hide');
     localStorage.clear();
     usuarioLogado.innerHTML = `<img class="cabecalho__icons__login" src="img/user.png" alt="icone de usuário">`
+    numeroDeProdutosNaSacola.textContent = 0;
     Modal.openModal('Usuário deslogado com sucesso!');
 }
 
 headerLogado();
+

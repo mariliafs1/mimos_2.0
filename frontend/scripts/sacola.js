@@ -2,6 +2,8 @@ import Modal from "./modal.js";
 
 const secao = document.querySelector('#home');
 
+
+
 const response = await fetch('/env');
 const env = await response.json();
 const apiURL = env.apiURL;
@@ -22,6 +24,7 @@ export const sacolaAutorizada = async(req, res) =>{
                 secao.innerHTML = html;
                 await listarProdutosSacola();
                 atualizarSubTotal();
+      
 
             }else{
                 const errorMessage = await response.json()
@@ -35,21 +38,21 @@ export const sacolaAutorizada = async(req, res) =>{
 }
 
 const listarProdutosSacola = async () =>{
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user._id;
+
     try {
-        const response = await fetch(`${apiURL}/sacola/${userId}`);
-        const produtosNaSacola = await response.json();
-        const produtos = produtosNaSacola.carrinho;
-        
-        if(produtos.length != 0){
+
+        const {carrinho, quantidadeDeProdutosNaSacola} = await getProdutosSacola();
+      
+        iconNumeroDeProdutosSacola(carrinho);
+
+        if(carrinho.length != 0){
             const sacolaVazia = document.querySelector('.sacola__vazia');
             sacolaVazia.classList.add('hide');
         }else{
             sacolaVazia.classList.remove('hide');
         }
 
-        produtos.forEach((produto) => {
+        carrinho.forEach((produto) => {
             criarProdutoSacola(produto.produto.nome, produto.produto.preco, produto.produto.imagem, produto.produto._id, produto.quantidade )
         });
         
@@ -80,19 +83,12 @@ async function deletaProduto(e){
         console.log(error)
     }
     
-    
-    // carrinho = carrinho.filter((produto) => (produto.id != seletor));
-    // e.target.parentElement.parentElement.parentElement.remove();
-    // sacolaVaziaToggle();
-    // atualizarSubTotal();
-    // atualizarCarrinho();
-    // iconAlteraNumeroDeProdutosSacola();
 }
 
 const atualizaSacola = async () => {
     const sacola = document.querySelector('#home');
     sacola.innerHTML = '';
-    await sacolaAutorizada();
+    await sacolaAutorizada(); 
     
 }
 
@@ -177,25 +173,79 @@ function atualizarSubTotal(){
     precoTotal.lastChild.previousSibling.innerText = "R$ "+precoTotalCalc;
 }
 
+export const getProdutosSacola = async(req, res) => { //ESTOU AQUIIIIIIIIIII
+    const token = localStorage.getItem('authToken');
+    console.log('entrou')
+    try {
+        const response = await fetch(`${apiURL}/sacola/${token}`,{
+            method:'get',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'content-type':'application/json'
+            }
+        });
+
+        if(!response.ok){
+            throw new Error('Erro na resposta da API');
+        }
+        const data = await response.json();
+        const carrinho = data.carrinho;
+        let quantidadeDeProdutosNaSacola = 0
+
+        carrinho.forEach((produto)=>{
+            quantidadeDeProdutosNaSacola += produto.quantidade
+        });
+
+        console.log(quantidadeDeProdutosNaSacola);
+        return {carrinho, quantidadeDeProdutosNaSacola};
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 
 async function atualizarSubTotalInputTexto(e){
     atualizarSubTotal();
     const token = localStorage.getItem('authToken');
     const produtoId = e.target.parentElement.parentElement.parentElement.id;
-    console.log(produtoId)
+    const quantidadeProduto = e.target.value
     try {
         const response = await fetch(`${apiURL}/sacola/${produtoId}`,{
             method:'put',
             headers:{
                 'authorization': `Bearer ${token}`,
                 'content-type':'application/json'
-            }
+            },
+            body: JSON.stringify({quantidadeProduto})
         });
-        const produtoDeletado = await response.json();
-        console.log(produtoDeletado.message)
+        const produtosNaSacola = await response.json();
+       iconNumeroDeProdutosSacola(produtosNaSacola.carrinho);
+        console.log(sacolaIcon);
      
     } catch (error) {
         console.log(error)
     }
 
 }
+
+
+function iconNumeroDeProdutosSacola(produtos){
+   
+    
+    let quantidadeDeProdutosNaSacola = 0;
+    let numeroDeProdutosNaSacola2 = document.querySelector('.numero__produtos__sacola');
+    
+
+    produtos.forEach((produto)=>{
+        quantidadeDeProdutosNaSacola += parseInt(produto.quantidade);
+    })
+
+    numeroDeProdutosNaSacola2.textContent=quantidadeDeProdutosNaSacola;
+    return quantidadeDeProdutosNaSacola;
+    
+}
+
+
+
