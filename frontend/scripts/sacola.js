@@ -38,11 +38,10 @@ export const sacolaAutorizada = async(req, res) =>{
 }
 
 const listarProdutosSacola = async () =>{
-
     try {
 
         const {carrinho, quantidadeDeProdutosNaSacola} = await getProdutosSacola();
-      
+        console.log(carrinho);
         iconNumeroDeProdutosSacola(carrinho);
 
         if(carrinho.length != 0){
