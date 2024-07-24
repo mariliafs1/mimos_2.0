@@ -8,7 +8,7 @@ import bodyParser from 'body-parser'
 
 
 
-const app = express();
+export const app = express();
 const port = 3000;
 app.use(cors({
     origin: ['https://mimos-3-1.vercel.app'], //'https://mimos20-marilia-farias-projects.vercel.app'
@@ -49,4 +49,3 @@ app.listen(port, ()=>{
     console.log(`Servidor escutando na porta: ${port} `);
 });
 
-export default app;
