@@ -37,7 +37,7 @@ async function loginAutenticacao(e){
     console.log(JSON.stringify(login));
 
     try{
-        const response = await fetch(`${apiURL}/login/loginUsuario`,{
+        const response = await fetch(`${apiURL}/usuario/loginUsuario`,{
             method:'post',
             headers:{
                 'content-type':'application/json'
@@ -46,12 +46,13 @@ async function loginAutenticacao(e){
         });
 
         const data = await response.json();
-        console.log('Resposta do backend:', data.message);
+        console.log('Resposta do backend:', data);
 
         if(data.message == "Autenticação realizada com sucesso"){
             const token = data.token;
             localStorage.setItem('authToken', token);
-            await loginAutorizado(login.email_login);
+            localStorage.setItem('user', JSON.stringify(data.usuarioSemSenha));
+            window.location.href = `${apiURL}/`
             
         }else{
             Modal.openModal(data.message);
@@ -62,53 +63,3 @@ async function loginAutenticacao(e){
     }
    
 }
-
-async function loginAutorizado(email_login){
-    console.log('entrouaquiii');
-    const token = localStorage.getItem('authToken');
-
-    try {
-        const response = await fetch(`${apiURL}/usuario/${email_login}`,{
-            method:'get',
-            headers:{
-                'Authorization': `Bearer ${token}`,
-                'content-type':'application/json'
-            }
-        });
-
-        let data = await response.json();
-        console.log(data);
-
-        if(data.message=='logado com sucesso!'){
-            localStorage.setItem('user', JSON.stringify(data.usuario));
-            window.location.href = `${apiURL}/`
-        }
-
-
-    } catch (error) {
-        console.log(error);
-    }
-
-    // try {
-    //     const response = await fetch('http://localhost:3000/usuario/668c2923153543f0d26ecaae',{
-    //         method:'get',
-    //         headers:{
-    //             'Authorization': `Bearer ${token}`,
-    //             'content-type':'application/json'
-    //         }
-    //     });
-
-    //     const data = await response.json();
-    //     console.log(data);
-    //     console.log(data.usuario);
-
-    //     if(data.message == 'logado com sucesso!'){
-    //         localStorage.setItem('user', JSON.stringify(data.usuario));
-    //         // window.location.href = "http://localhost:3000/"
-    //     }
-    // } catch (error) {
-    //     console.log(error)
-    // }
-}
-
-

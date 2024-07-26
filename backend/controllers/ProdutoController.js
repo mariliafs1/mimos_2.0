@@ -29,7 +29,6 @@ const getByCategorie = async (req, res) => {
 
   try {
     const ListaPorCategorias = await Produto.find({ categoria });
-    console.log(ListaPorCategorias);
     if(ListaPorCategorias.length == 0){
         return res.status(404).send('Categoria vazia');
     }

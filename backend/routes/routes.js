@@ -8,13 +8,16 @@ const routes = express.Router();
 
 routes.get('/produtos', ProdutoController.getAllProdutos);
 routes.get("/", PagesController.getHomePage);
+routes.get("/login", PagesController.getLoginPage);
+routes.get("/cadastro", PagesController.getCadastroPage);
+routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
+
+
 routes.get("/produtos/:categoria", ProdutoController.getByCategorie);
 routes.get("/produto/:id", ProdutoController.getProdutoById)
 
-routes.get("/login", PagesController.getLoginPage);
-routes.get("/cadastro", PagesController.getCadastroPage);
 
-routes.get("/sacola", authMiddleware, PagesController.getSacolaPage);
+
 routes.get("/sacola/:id", authMiddleware, SacolaController.getSacolaProdutos);
 routes.post("/sacola/:id", authMiddleware, SacolaController.addProduto);
 routes.delete("/sacola/:id", authMiddleware, SacolaController.deleteProduto);
@@ -22,14 +25,11 @@ routes.put("/sacola/:id", authMiddleware, SacolaController.updateSacola);
 
 
 
-routes.post("/cadastro/registraUsuario", UsuarioController.registraUsuario);
-routes.post("/login/loginUsuario", UsuarioController.loginUsuario);
+routes.post("/usuario/registraUsuario", UsuarioController.registraUsuario);
+routes.post("/usuario/loginUsuario", UsuarioController.loginUsuario);
+routes.delete("/usuario", authMiddleware, UsuarioController.deleteUsuarioPorId);
 
-//rotas privadas
 
-// routes.get("/usuario/:id", UsuarioController.checarToken, UsuarioController.getUsuarioPorId);
-routes.get("/usuario/:email_login", authMiddleware, UsuarioController.getUsuarioPorLogin)
 
-//rotas carrinho
 
 export default routes;

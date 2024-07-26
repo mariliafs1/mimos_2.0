@@ -1,22 +1,32 @@
 import { Produto } from "../../models/Produto.js";
 import supertest from "supertest";
 import { app } from "../../index.js";
-// import  {MongoMemoryServer} from "mongodb-memory-server";
-// import mongoose from "mongoose";
+import getPort from 'get-port';
+import dotevn from 'dotenv'
+import mongoose from "mongoose";
+
+dotevn.config();
 
 describe("Testando o modelo Produto", () => {
-  // let mongoServer;
 
-  // beforeAll(async()=>{
-  //   mongoServer = await MongoMemoryServer.create();
-  //   const mongoUri = mongoServer.getUri();
-  //   await mongoose.connect(mongoUri);
-  // })
+  let server;
+  let port;
 
-  // afterAll(async()=>{
-  //   await mongoose.disconnect();
-  //   await mongoServer.stop();
-  // })
+  beforeAll(async () => {
+    port = await getPort(); // Obtém uma porta livre dinamicamente
+    server = app.listen(port);
+    global.agent = supertest.agent(server);
+
+    const uri = process.env.MONGODB_URI;
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log("MongoDB Conectado!");
+
+  });
+  afterAll(async () => {
+    await mongoose.disconnect();
+        console.log("MongoDB Desconectado!");
+    server.close();
+  });
 
   const objetoProduto = {
     nome: "Sabonete",
@@ -39,7 +49,7 @@ describe("Testando o modelo Produto", () => {
     expect(produto).toEqual(expect.objectContaining(objetoProduto));
   });
 
-  describe("Rota get produto", () => {
+  describe("GET produto", () => {
 
     describe("/produto/:id", () => {
       it("Deve retornar que o id do produto é inválido", async () => {
@@ -84,7 +94,6 @@ describe("Testando o modelo Produto", () => {
 
             produtos.forEach((produto) => {
               expect(produto.categoria).toBe(categoria);
-              console.log("passou");
             });
           }
         });
