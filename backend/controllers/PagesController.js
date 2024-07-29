@@ -22,11 +22,13 @@ function getCadastroPage(req, res){
 }
 
 function getSacolaPage(req, res, next){
-    console.log(req.userId)
     return res.sendFile(path.join(frontendPathPages, 'sacola2.html'));
+}
+function getFavoritosPage(req, res, next){
+    return res.sendFile(path.join(frontendPathPages, 'favoritos.html'));
 }
 
 
-const PagesController = {getHomePage, getLoginPage, getCadastroPage, getSacolaPage}
+const PagesController = {getHomePage, getLoginPage, getCadastroPage, getSacolaPage, getFavoritosPage}
 
 export default PagesController

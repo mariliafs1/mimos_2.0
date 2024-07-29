@@ -30,10 +30,10 @@ const usuarioSchema = new mongoose.Schema({
         type: [sacolaItemSchema],
         default: []
     },
-    favoritos: {
-        type: [produtoSchema],
-        default: []
-    }
+    favoritos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Produtos'
+    }]
 });
 
 const Usuario = mongoose.model("Usuarios", usuarioSchema);

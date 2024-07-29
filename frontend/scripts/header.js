@@ -1,5 +1,6 @@
 import Modal from "./modal.js";
-import { sacolaAutorizada, getProdutosSacola } from "./sacola.js";
+import { sacolaAutorizada, getProdutosSacola } from "./sacola.js"
+import { favoritosPage } from "./favoritos.js";
 
 
 const response = await fetch('/env');
@@ -53,6 +54,9 @@ const trocarPagina = async (pagina)=>{
         }else{
             logout.classList.add('hide');
         }       
+    }else if(pagina == 'favoritos'){
+        await favoritosPage();
+
     }else{
         window.location.href = `${apiURL}/${pagina}`
         // try {
