@@ -14,7 +14,6 @@ let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
 
 
-const produtosDisponiveis = []; //VARIÁVEL QUE ARMAZENA OS DADOS DO JSON INDICANDO UMA LISTA DE PRODUTOS DISPONÍVEIS NA LOJA
 
 async function getAndShowProdutos(){
     try {
@@ -88,6 +87,7 @@ export const adicionaProdutoSacola = async (btnId) =>{
         }else{
             const errorData = await response.json();
             console.error('Erro na resposta:', errorData.message);
+            Modal.openModal('Faça login para iniciar suas compras!')
         }
 
     } catch (error) {
