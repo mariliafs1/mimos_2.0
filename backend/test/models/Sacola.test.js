@@ -90,6 +90,32 @@ describe("Testando a Sacola", () => {
     });
   });
 
+  describe("GET Sacola/produtos", () => {
+    it("Deve listar todos os produtos da sacola de um usuário logado", async () => {
+      const resposta = await supertest(app)
+        .get(`/sacola/produtos`)
+        .set("Authorization", `Bearer ${tokenValido}`)
+        .expect(200);
+
+      expect(resposta.body.message).toBe(
+        "Itens da sacola listados com sucesso!"
+      );
+      expect(resposta.body.carrinho).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            produto: expect.objectContaining({
+              _id: produtoTeste._id.toString(),
+              nome: produtoTeste.nome,
+              preco: produtoTeste.preco,
+              imagem: produtoTeste.imagem,
+              categoria: produtoTeste.categoria,
+            }),
+          }),
+        ])
+      );
+    });
+  });
+
   describe("DELETE Sacola", () => {
     it("Deve deletar o produto da sacola", async () => {
       const resposta = await supertest(app)

@@ -21,6 +21,10 @@ export const sacolaAutorizada = async(req, res) =>{
             
             if(response.ok){
                 const html = await response.text();
+                const busca = document.querySelector('.busca');
+                if(busca){
+                    busca.remove();
+                }
                 secao.innerHTML = html;
                 await listarProdutosSacola();
                 atualizarSubTotal();
@@ -38,6 +42,7 @@ export const sacolaAutorizada = async(req, res) =>{
 }
 
 const listarProdutosSacola = async () =>{
+    console.log('listou')
     try {
 
         const {carrinho, quantidadeDeProdutosNaSacola} = await getProdutosSacola();
@@ -172,11 +177,10 @@ function atualizarSubTotal(){
     precoTotal.lastChild.previousSibling.innerText = "R$ "+precoTotalCalc;
 }
 
-export const getProdutosSacola = async(req, res) => { //ESTOU AQUIIIIIIIIIII
+export const getProdutosSacola = async(req, res) => { 
     const token = localStorage.getItem('authToken');
-    console.log('entrou')
     try {
-        const response = await fetch(`${apiURL}/sacola/${token}`,{
+        const response = await fetch(`${apiURL}/sacola/produtos`,{
             method:'get',
             headers:{
                 'Authorization': `Bearer ${token}`,
@@ -195,7 +199,6 @@ export const getProdutosSacola = async(req, res) => { //ESTOU AQUIIIIIIIIIII
             quantidadeDeProdutosNaSacola += produto.quantidade
         });
 
-        console.log(quantidadeDeProdutosNaSacola);
         return {carrinho, quantidadeDeProdutosNaSacola};
 
     } catch (error) {

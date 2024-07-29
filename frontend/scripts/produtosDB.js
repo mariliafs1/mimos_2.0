@@ -68,7 +68,7 @@ function showProdutos(produtos){
 }
 });
 
-const adicionaProdutoSacola = async (btnId) =>{
+export const adicionaProdutoSacola = async (btnId) =>{
     console.log(btnId)
     try {
         const token = localStorage.getItem('authToken');
@@ -81,6 +81,8 @@ const adicionaProdutoSacola = async (btnId) =>{
         });
         
         if(response.ok){
+            let iconSacola = document.querySelector('.numero__produtos__sacola');
+            iconSacola.innerHTML = parseInt(iconSacola.innerHTML) + 1;
             console.log('poduto adicionado na sacola');
             Modal.openModal('Produto adicionado na sacola!')
         }else{

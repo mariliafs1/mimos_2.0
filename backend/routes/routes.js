@@ -18,10 +18,10 @@ routes.get("/produto/:id", ProdutoController.getProdutoById)
 
 
 
-routes.get("/sacola/:id", authMiddleware, SacolaController.getSacolaProdutos);
+routes.get("/sacola/produtos", authMiddleware, SacolaController.getSacolaProdutos);
 routes.post("/sacola/:id", authMiddleware, SacolaController.addProduto);
+// routes.put("/sacola/:id", authMiddleware, SacolaController.updateSacola);
 routes.delete("/sacola/:id", authMiddleware, SacolaController.deleteProduto);
-routes.put("/sacola/:id", authMiddleware, SacolaController.updateSacola);
 
 
 

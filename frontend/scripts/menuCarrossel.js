@@ -25,7 +25,6 @@ const mostrarSeta = (carrosselVar, setasBtnVar) =>{
 }
 
 const arrastoSeta = (carrosselVar, setasBtnVar, primeiraImg, diff) =>{
-    console.log(primeiraImg);
     setasBtnVar.forEach(seta =>{
         seta.addEventListener("click", ()=>{
             let primeiraImgWidth = 200 + diff;
