@@ -10,7 +10,7 @@ export const app = express();
 const port = 3000;
 app.use(
   cors({
-    origin: ["https://mimos-3-1.vercel.app"], //'https://mimos20-marilia-farias-projects.vercel.app'
+    origin: ["https://mimos-3-2.vercel.app"], //'https://mimos20-marilia-farias-projects.vercel.app'
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
