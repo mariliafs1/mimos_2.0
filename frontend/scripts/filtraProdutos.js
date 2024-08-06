@@ -1,4 +1,5 @@
-import {adicionaProdutoSacola} from './produtosDB.js'
+import {adicionaProdutoSacola, toggleFavorito} from './produtosDB.js'
+import { getFavoritos } from "./favoritos.js";
 
 const inputBuscar = document.querySelector('.busca__input');
 const buscaCategorizada = document.querySelector("#busca__categorizada");
@@ -18,17 +19,6 @@ function fecharCategoriasPeloX(e){
     }
     return;
 }
-
-// function toggleFavoritosCategorizados(e){
-//     console.log('entrou');
-//     console.log(e.target);
-//     if(e.target.classList.contains('coracaoCategorizado')){
-//         toggleFavoritos(e);
-
-//     }
-//     return;
-// }
-
 
 const toggleBuscaCategorizadaImgButton = (imgButton) => {
     // Remove o listener de fechamento da categoria de todos os botões de imagem
@@ -57,17 +47,27 @@ async function filtrarCategoria(e) {
     let categoriaSelecionada = e.target.id.slice(7);
     let response = await fetch(`/produtos/${categoriaSelecionada}`);
     const produtos = await response.json();
+    const favoritos = await getFavoritos();
     
     buscaCategorizadaContainer.innerHTML = `<div class="cross__background"><img class="busca__categorizada__cross" src="img/cross.svg" alt=""></div>`;
     
     produtos.forEach((produto) => {
-        buscaCategorizadaContainer.innerHTML += renderizaProdutos(produto);
+        buscaCategorizadaContainer.innerHTML += renderizaProdutos(produto, favoritos);
     });
 
     let produtoBtns = buscaCategorizadaContainer.querySelectorAll('.produto__botao');
     produtoBtns.forEach((btn) => {
         btn.addEventListener('click', () => adicionaProdutoSacola(btn.id));
     });
+
+    let favoritosBtn = document.querySelectorAll('.produto__favoritar img');
+    favoritosBtn.forEach((btn) =>{
+        btn.addEventListener('click', ()=>toggleFavorito(btn.id));
+    })
+  
+
+    //aqui
+
 
     let imgButton = e.target;
     toggleBuscaCategorizadaImgButton(imgButton);
@@ -81,12 +81,13 @@ menuCarrossel.forEach((img) => {
 async function filtrarPesquisa(){
     let response = await fetch("/produtos");
     const produtos = await response.json();
-    console.log(produtos);
+    const favoritos = await getFavoritos();
+    console.log(favoritos)
     buscaProdutoFiltrado.innerHTML = '';
     if(inputBuscar.value != ''){
         produtos.forEach((produto) => {
             if(produto.nome.toLowerCase().includes(inputBuscar.value.toLowerCase())){
-            buscaProdutoFiltrado.innerHTML += renderizaProdutos(produto);          
+            buscaProdutoFiltrado.innerHTML += renderizaProdutos(produto, favoritos);          
     }})
 
             let produtoBtn = buscaProdutoFiltrado.querySelectorAll('.produto__botao');
@@ -94,12 +95,20 @@ async function filtrarPesquisa(){
                 console.log('aqui', btn);
                 btn.addEventListener('click', ()=>adicionaProdutoSacola(btn.id))
             })
-            let btnCoracao = buscaProdutoFiltrado.querySelectorAll('.produto__favoritar'); 
-            btnCoracao.forEach(btn => btn.addEventListener('click', (e) => toggleFavoritos(e)))
+
+            let favoritosBtn = document.querySelectorAll('.produto__favoritar img');
+            favoritosBtn.forEach((btn) =>{
+                btn.addEventListener('click', ()=>toggleFavorito(btn.id));
+            })
+
     }
 }
 
-function renderizaProdutos(produto){
+function renderizaProdutos(produto, favoritos){
+    let produtoFavoritado
+    if(favoritos != 'Token não encontrado.'){
+        produtoFavoritado = favoritos.find(favorito => favorito._id == produto._id  )
+    }
     return(
         `
         <div class="produto">
@@ -107,7 +116,14 @@ function renderizaProdutos(produto){
             <div class="produto__infos">
                 <div class="produto__nome__favoritar">
                     <p>${produto.nome}</p>
-                    <div class="produto__favoritar" ><img id=${produto._id} src="./img/coracao.png" alt=""></div>
+                    <div class="produto__favoritar" ><img class=${
+                    produtoFavoritado
+                        ? "reparaBug"
+                        : "produto__nome__favoritar__desativado"
+                    } 
+                    id=${
+                    produto._id
+                    } src="../img/coracao.png" alt=""></div>  
                 </div>
                 <div class="produto__infos-precos-botao">
                     <div class="produto__infos-precos">

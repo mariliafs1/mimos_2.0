@@ -24,7 +24,10 @@ export const favoritosPage = async(req, res) =>{
                     busca.remove();
                 }
                 secao.innerHTML = html;
-                showFavoritos()
+                const favoritos = await getFavoritos();
+                const favoritosContainer = document.querySelector('.favoritos__itens');
+
+                showProdutos(favoritos, favoritosContainer, favoritosContainer, favoritos);
             }else{
                 const errorMessage = await response.json()
                 if(errorMessage.message == 'Autorização negada: token inválido!'){
@@ -38,23 +41,27 @@ export const favoritosPage = async(req, res) =>{
     }
 }
 
-export const showFavoritos = async () =>{
+export const getFavoritos = async () =>{
     const token = localStorage.getItem('authToken');
-    try {
-        const response = await fetch(`${apiURL}/favoritos/produtos`,{
-            method:'GET',
-            headers:{
-                'Authorization':`Bearer ${token}`,
-                'content-type':'application/json'
-            } 
-        });
+    if(token){
+        try {
+            const response = await fetch(`${apiURL}/favoritos/produtos`,{
+                method:'GET',
+                headers:{
+                    'Authorization':`Bearer ${token}`,
+                    'content-type':'application/json'
+                } 
+            });
 
-        const data = await response.json()
-        const favoritos = data.favoritos;
-        const favoritosContainer = document.querySelector('.favoritos__itens');
-        showProdutos(favoritos, favoritosContainer, favoritosContainer);
-    } catch (error) {
-        console.log('Erro ao buscar os favoritos do usuário:', error)
+            const data = await response.json()
+            const favoritos = data.favoritos;
+            return favoritos;
+    
+        } catch (error) {
+            console.log('Erro ao buscar os favoritos do usuário:', error)
+        }
+    }else{
+        return 'Token não encontrado.'
     }
 }
 
