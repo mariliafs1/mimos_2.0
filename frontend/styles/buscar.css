@@ -59,6 +59,7 @@
     max-width: 1400px;
     align-items: center;
     margin: 0 auto;
+    position: relative;
  
 }
 .home__background{

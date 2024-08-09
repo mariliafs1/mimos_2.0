@@ -18,7 +18,7 @@ function getLoginPage(req, res){
 }
 
 function getCadastroPage(req, res){
-    return res.sendFile(path.join(frontendPathPages, 'cadastro.html'));
+    return res.sendFile(path.join(frontendPathPages, 'cadastro2.html'));
 }
 
 function getSacolaPage(req, res, next){

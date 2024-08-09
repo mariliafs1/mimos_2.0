@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
   let carrosselPromo = document.querySelector("#carrossel__promo");
 
-  await getAndShowProdutos(apiURL, carrosselUltimosLancamentos, carrosselPromo);
+  if(carrosselPromo && carrosselUltimosLancamentos){
+    await getAndShowProdutos(apiURL, carrosselUltimosLancamentos, carrosselPromo);
+  }
 });
 
 async function getAndShowProdutos(

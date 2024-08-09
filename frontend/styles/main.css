@@ -10,6 +10,7 @@
 @import url('./login.css');
 @import url('./favoritos.css');
 @import url('./buscarCategorizado.css');
+@import url('./notes.css');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&family=Rum+Raisin&display=swap');
 @import url('./cadastro.css');
 
@@ -29,8 +30,10 @@
 
 body{
     background-color: var(--cor-de-fundo);
-    /* height: 3000px; */
     font-family: var(--fonte);
+    max-width: 1400px;
+    margin: auto;
+    text-align: center;
 }
 
 /* css dos carrosseis */

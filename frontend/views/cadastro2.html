@@ -1,0 +1,64 @@
+<section id='cadastro' class="login">
+    <form class="login__container">
+        <h1>Preencha os campos abaixo para se cadastrar.</h1>
+        <fieldset class="cadastro__campo">
+            <label class="cadastro__etiqueta" for="nome">* Nome:</label>
+            <input type="text" name="nome" id="nome" class="cadastro__escrita" placeholder="Digite seu nome completo..." required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        
+        <fieldset class="cadastro__campo">
+            <label class="cadastro__etiqueta" for="cpf">* CPF:</label>
+            <input type="text" name="cpf" id="cpf" class="cadastro__escrita cpf"
+                maxlength="14" 
+                minlength="14"
+                required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        
+        <fieldset class="cadastro__campo">
+            <label class="cadastro__etiqueta" for="nascimento">* Data de nascimento:</label>
+            <input type="date" name="dataNascimento" id="nascimento" class="cadastro__escrita" required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        
+        <fieldset class="cadastro__campo">
+            <label class="cadastro__etiqueta" for="email">* E-mail:</label>
+            <input type="email" name="email__cadastro" id="email__cadastro" class="cadastro__escrita"  minlength="4" required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+
+        <fieldset class="cadastro__campo senha__icon__position">
+            <label class="cadastro__etiqueta" for="senha">* Senha:</label>
+            <img id="icon__olho" src="./img/olho_closed.svg" alt="Icone de olho fechado">
+            <input type="password" name="senha" id="senha" class="cadastro__escrita" 
+            minlength="6"     
+            placeholder="Crie uma senha..." required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+
+        <fieldset class="cadastro__campo senha__icon__position">
+            <label class="cadastro__etiqueta" for="senha">* Repita a senha:</label>
+            <img id="icon__olho2" src="./img/olho_closed.svg" alt="Icone de olho fechado">
+            <input type="password" name="senha_repetida" id="repete__senha" class="cadastro__escrita" 
+            minlength="6"  
+            placeholder="Digite a novamente..." required />
+            <span class="mensagem-erro"></span>
+        </fieldset>
+        
+        <fieldset class="cadastro__campo">
+            <div class="cadastro__check">
+                <input name="termos" class="input__check"  type="checkbox" required />
+                <p class="termos__texto">
+                    Li e concordo com o <strong>termo de consentimento.</strong>
+                </p>
+                <span class="mensagem-erro"></span>
+            </div>
+        </fieldset>
+        <div class="botao__form__cadastrar">
+            <input type="submit" value="CADASTRAR" class="cadastro__botao" id="enviar__cadastro" disabled>
+            <span class="mensagem-erro"></span>
+            <button class="tenho__cadastro">JÁ TENHO CADASTRO</button>
+        </div>
+    </form>
+</section>

@@ -1,33 +1,75 @@
 import ValidaForm from "./validaFormFunctions.js";
 import Modal from "./modal.js";
+import { cadastroPage } from "./loginECadastroPage.js";
 
 const response = await fetch('/env');
 const env = await response.json();
 const apiURL = env.apiURL;
 
-const camposDoLogin = document.querySelector('#login').querySelectorAll("[required]");
-const loginOlho = document.querySelector('#icon__olho__login');
+let camposDoLogin, loginOlho, inputSenhaLogin, botaoSubmit, formLogin, cadastroBtn;
 
-const inputSenhaLogin = document.querySelector('#senha__login');
-const botaoSubmit = document.querySelector('.login__btn__entrar');
-const formLogin = document.querySelector('#login form')
+export const iniciarLoginPage = () =>{
+    console.log('iniciou')
+     camposDoLogin = document.querySelector('#login').querySelectorAll("[required]");
+     loginOlho = document.querySelector('#icon__olho__login');
+    
+     inputSenhaLogin = document.querySelector('#senha__login');
+     botaoSubmit = document.querySelector('.login__btn__entrar');
+     formLogin = document.querySelector('#login form')
+    
+     cadastroBtn = document.querySelector('.quero__cadastrar');
+     
+     camposDoLogin.forEach((campo)=>{
+         campo.addEventListener("blur", ()=> ValidaForm.verificaCampo(campo));
+         campo.addEventListener('invalid', (e) => e.preventDefault());
+     });
 
-const cadastroBtn = document.querySelector('.quero__cadastrar');
+     if (loginOlho) {
+        loginOlho.addEventListener('click', (e) => ValidaForm.toggleMostrarSenha(e, inputSenhaLogin));
+    }
 
+    if (botaoSubmit) {
+        botaoSubmit.addEventListener('click', (e) => loginAutenticacao(e));
+    }
 
-camposDoLogin.forEach((campo)=>{
-    campo.addEventListener("blur", ()=> ValidaForm.verificaCampo(campo));
-    campo.addEventListener('invalid', (e) => e.preventDefault());
-});
-
-cadastroBtn.addEventListener('click', mudarPaginaParaCadastro);
-botaoSubmit.addEventListener('click', (e)=>loginAutenticacao(e))
-
-function mudarPaginaParaCadastro(){
-    window.location.href = `${apiURL}/cadastro`
+    if (cadastroBtn) {
+        cadastroBtn.addEventListener('click', async () => {
+            console.log('Cadastro button clicked');
+            await cadastroPage();
+        });
+    }
+    console.log('aqui',cadastroBtn);
 }
 
-loginOlho.addEventListener('click', (e)=>ValidaForm.toggleMostrarSenha(e, inputSenhaLogin));
+
+
+
+const addBotaoSubmitEvent = () => {
+    botaoSubmit.addEventListener('click', (e) => loginAutenticacao(e));
+}
+
+
+
+
+// cadastroBtn.addEventListener('click', async()=> await cadastroPage());
+// botaoSubmit.addEventListener('click', (e)=>loginAutenticacao(e))
+
+// async function mudarPaginaParaCadastro(){
+//     await cadastroPage();
+// }
+
+
+// async function mudarPaginaParaCadastro() {
+//     await cadastroPage();
+    
+//     // Após mudar a página, recrie o botão e adicione o evento novamente
+//     cadastroBtn = document.querySelector('.quero__cadastrar');
+//     addCadastroBtnEvent();
+// }
+
+
+
+// loginOlho.addEventListener('click', (e)=>ValidaForm.toggleMostrarSenha(e, inputSenhaLogin));
 
 async function loginAutenticacao(e){
     e.preventDefault();
@@ -63,3 +105,6 @@ async function loginAutenticacao(e){
     }
    
 }
+
+// iniciarLoginPage();
+
