@@ -20,7 +20,9 @@ const loginIcon = document.querySelector('.nome__usuario');
 const secao = document.querySelector('#home');
 
 sacolaIcon.addEventListener('click', ()=>trocarPagina('sacola'));
-homeIcon.addEventListener('click',()=> trocarPagina(''));
+if(homeIcon){
+    homeIcon.addEventListener('click',()=> trocarPagina(''));
+}
 loginIcon.addEventListener('click', ()=>trocarPagina('login'));
 favoritosIcon.addEventListener('click',()=> trocarPagina('favoritos'));
 
@@ -62,9 +64,11 @@ const trocarPagina = async (pagina)=>{
         await loginPage();
         Note.openNotes('Login: teste@teste.com<br>Senha: 123456<br>Caso prefira, você também pode realizar o seu próprio cadastro!')
     }else if(pagina == 'favoritos'){
-        await favoritosPage();
-        const listaMenuAberto = document.querySelector('.lista__menu__aberto')
-        listaMenuAberto.remove();
+        const response = await favoritosPage();
+        if(!response){
+            const listaMenuAberto = document.querySelector('.lista__menu__aberto')
+            listaMenuAberto.innerHTML = '<li><a href="">Home</a></li>'
+        }
 
     }else{
         // Note.closeAllNotes();

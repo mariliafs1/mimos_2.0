@@ -154,6 +154,7 @@
 
 .lista__menu__aberto{
     display: none;
+
 }
 
 
@@ -197,6 +198,9 @@
         
         margin: 0 auto;
         text-align: center;
+    }
+    .cabecalho__icons__home{
+        display: none;
     }
 }
 

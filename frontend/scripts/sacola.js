@@ -24,7 +24,8 @@ export const sacolaAutorizada = async(req, res) =>{
                 const busca = document.querySelector('.busca');
                 const listaMenuAberto = document.querySelector('.lista__menu__aberto')
                 if(listaMenuAberto){
-                    listaMenuAberto.remove();
+                    const listaMenuAberto = document.querySelector('.lista__menu__aberto')
+                    listaMenuAberto.innerHTML = '<li><a href="">Home</a></li>'
                 }
                 if(busca){
                     busca.remove();

@@ -14,6 +14,10 @@
     max-width: 200px;
 }
 
+.notes p{
+    line-height: 16px;
+}
+
 .close__notes{
     position: absolute;
     background-color: var(--cinza);

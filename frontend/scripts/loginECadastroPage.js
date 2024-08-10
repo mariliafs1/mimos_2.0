@@ -17,7 +17,7 @@ export const loginPage = async(req, res) =>{
                 const busca = document.querySelector('.busca');
                 const listaMenuAberto = document.querySelector('.lista__menu__aberto')
                 if(listaMenuAberto){
-                    listaMenuAberto.remove();
+                    listaMenuAberto.innerHTML = '<li><a href="">Home</a></li>'
                 }
                 if(busca){
                     busca.remove();
@@ -28,6 +28,9 @@ export const loginPage = async(req, res) =>{
                 iniciarLoginPage();
                 const cadastradoBtn = document.querySelector('.quero__cadastrar');
                 cadastradoBtn.addEventListener('click',async () => await cadastroPage() )
+
+                // const navBar = document.querySelector('.cabecalho_icons');
+                // navBar.innerHTML += '<a href="#"><p class="cabecalho__icons__home" src="img/home.svg" alt="icone de casinha">HOME</p></a> '
 
       
 
@@ -68,8 +71,9 @@ export const cadastroPage = async(req, res) =>{
                 const html = await response.text();
                 const busca = document.querySelector('.busca');
                 const listaMenuAberto = document.querySelector('.lista__menu__aberto')
+                const cabecalhoIcons = document.querySelector('.cabecalho_icons')
                 if(listaMenuAberto){
-                    listaMenuAberto.remove();
+                    listaMenuAberto.innerHTML = '<li><a href="">Home</a></li>'
                 }
                 if(busca){
                     busca.remove();

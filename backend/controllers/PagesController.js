@@ -18,11 +18,11 @@ function getLoginPage(req, res){
 }
 
 function getCadastroPage(req, res){
-    return res.sendFile(path.join(frontendPathPages, 'cadastro2.html'));
+    return res.sendFile(path.join(frontendPathPages, 'cadastro.html'));
 }
 
 function getSacolaPage(req, res, next){
-    return res.sendFile(path.join(frontendPathPages, 'sacola2.html'));
+    return res.sendFile(path.join(frontendPathPages, 'sacola.html'));
 }
 function getFavoritosPage(req, res, next){
     return res.sendFile(path.join(frontendPathPages, 'favoritos.html'));

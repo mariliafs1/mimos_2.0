@@ -31,7 +31,8 @@ export const favoritosPage = async(req, res) =>{
             }else{
                 const errorMessage = await response.json()
                 if(errorMessage.message == 'Autorização negada: token inválido!'){
-                    Modal.openModal('Faça Login para acessar sua sacola!');
+                    Modal.openModal('Faça Login para acessar seus favoritos!');
+                    return errorMessage.message;
                 }else{
                     console.log(errorMessage.message)
                 }
