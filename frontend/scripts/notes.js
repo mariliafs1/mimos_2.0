@@ -16,8 +16,6 @@ const openNotes = (nota)=>{
 }
 
 const closeNote = (e)=>{
-    console.log(e.target)
-    console.log(e.target.parentElement)
     e.target.parentElement.remove();
 }
 

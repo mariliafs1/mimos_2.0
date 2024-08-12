@@ -3,6 +3,7 @@ import ValidaForm from "./validaFormFunctions.js";
 import Modal from "./modal.js";
 import { loginPage } from "./loginECadastroPage.js";
 import Note from "./notes.js";
+import { loginAutenticacao } from "./validaFormLogin.js";
 
 const response = await fetch('/env');
 const env = await response.json();
@@ -11,7 +12,6 @@ const apiURL = env.apiURL;
 let camposDoCadastro, inputCPF, senhaOlho, inputSenha, senhaOlho2, inputSenhaRepete, botaoSubmit, termoCheck, btnJaTenhoCadastro, formCadastro;
 
 export const iniciarCadastroPage = () => {
-    console.log('iniciou CadastroPage');
     
     camposDoCadastro = document.querySelector('#cadastro').querySelectorAll("[required]");
     inputCPF = document.querySelector(".cpf");
@@ -56,7 +56,6 @@ export const iniciarCadastroPage = () => {
         senhaOlho2.addEventListener('click', (e) => ValidaForm.toggleMostrarSenha(e, inputSenhaRepete));
     }
 
-    console.log('btn', btnJaTenhoCadastro);
 };
 
 function habilitaCadastro() {
@@ -70,6 +69,7 @@ async function cadastrado(e) {
     const formData = new FormData(formCadastro);
     const usuario = Object.fromEntries(formData.entries());
     console.log(usuario);
+   
 
     try {
         const response = await fetch(`${apiURL}/usuario/registraUsuario`, {
@@ -80,10 +80,14 @@ async function cadastrado(e) {
             body: JSON.stringify(usuario)
         });
         const data = await response.json();
-        console.log('Resposta do backend:', data);
 
-        if (data.message === "usuario criado com sucesso") {
-            Modal.openModal(data.message, `${apiURL}/login`);
+        if (data.message === "Usuário criado com sucesso!") {
+            let loginCadastro ={
+                email: usuario.email,
+                senha: usuario.senha,
+            }
+            Modal.openModal(data.message);
+            loginAutenticacao(e, loginCadastro )
         } else {
             Modal.openModal(data.message);
         }

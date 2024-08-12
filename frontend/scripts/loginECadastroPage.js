@@ -23,11 +23,10 @@ export const loginPage = async(req, res) =>{
                     busca.remove();
                 }
                 secao.innerHTML = html;
-                console.log(html)
                 loadScriptsLogin();
                 iniciarLoginPage();
                 const cadastradoBtn = document.querySelector('.quero__cadastrar');
-                cadastradoBtn.addEventListener('click',async () => await cadastroPage() )
+                cadastradoBtn.addEventListener('click', async () => await cadastroPage() )
 
                 // const navBar = document.querySelector('.cabecalho_icons');
                 // navBar.innerHTML += '<a href="#"><p class="cabecalho__icons__home" src="img/home.svg" alt="icone de casinha">HOME</p></a> '
@@ -79,11 +78,11 @@ export const cadastroPage = async(req, res) =>{
                     busca.remove();
                 }
                 secao.innerHTML = html;
-                console.log(html);
+              
                 loadScriptsCadastro();
                 iniciarCadastroPage();
                 const btnJaTenhoCadastro = document.querySelector('.tenho__cadastro');
-                console.log('porra',btnJaTenhoCadastro);
+
                 btnJaTenhoCadastro.addEventListener('click', async ()=>{
                     console.log('entrou')
                     Note.closeAllNotes();

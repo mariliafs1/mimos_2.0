@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const response = await fetch("/env");
   const env = await response.json();
   const apiURL = env.apiURL;
-
+  console.log('nao eh possivel')
   let carrosselUltimosLancamentos = document.querySelector(
     "#carrossel__ultimos__lancamentos"
   );
@@ -21,6 +21,9 @@ async function getAndShowProdutos(
   carrosselUltimosLancamentos,
   carrosselPromo
 ) {
+
+  
+
   try {
     const response = await fetch(`${apiURL}/produtos`);
     const produtos = await response.json();

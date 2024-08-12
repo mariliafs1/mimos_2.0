@@ -9,7 +9,6 @@ const apiURL = env.apiURL;
 let camposDoLogin, loginOlho, inputSenhaLogin, botaoSubmit, formLogin, cadastroBtn;
 
 export const iniciarLoginPage = () =>{
-    console.log('iniciou')
      camposDoLogin = document.querySelector('#login').querySelectorAll("[required]");
      loginOlho = document.querySelector('#icon__olho__login');
     
@@ -34,11 +33,9 @@ export const iniciarLoginPage = () =>{
 
     if (cadastroBtn) {
         cadastroBtn.addEventListener('click', async () => {
-            console.log('Cadastro button clicked');
             await cadastroPage();
         });
     }
-    console.log('aqui',cadastroBtn);
 }
 
 
@@ -71,12 +68,22 @@ const addBotaoSubmitEvent = () => {
 
 // loginOlho.addEventListener('click', (e)=>ValidaForm.toggleMostrarSenha(e, inputSenhaLogin));
 
-async function loginAutenticacao(e){
+export async function loginAutenticacao(e, loginCadastro){
     e.preventDefault();
-    const formData = new FormData(formLogin);
-    const login = Object.fromEntries(formData.entries());
-    console.log(login);
-    console.log(JSON.stringify(login));
+
+    let loginJSON, login
+
+    if(!loginCadastro){
+        const formData = new FormData(formLogin);
+        login = Object.fromEntries(formData.entries());
+        loginJSON = JSON.stringify(login);
+    }else{
+        login ={
+            email_login: loginCadastro.email,
+            senha_login: loginCadastro.senha
+        }
+        loginJSON = JSON.stringify(login);
+    }
 
     try{
         const response = await fetch(`${apiURL}/usuario/loginUsuario`,{
@@ -84,7 +91,7 @@ async function loginAutenticacao(e){
             headers:{
                 'content-type':'application/json'
             },
-            body: JSON.stringify(login)
+            body: loginJSON
         });
 
         const data = await response.json();
