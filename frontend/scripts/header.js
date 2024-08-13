@@ -22,6 +22,7 @@ const secao = document.querySelector('#home');
 sacolaIcon.addEventListener('click', ()=>trocarPagina('sacola'));
 if(homeIcon){
     homeIcon.addEventListener('click',()=>trocarPagina(''));
+ 
 }
 loginIcon.addEventListener('click', ()=>trocarPagina('login'));
 favoritosIcon.addEventListener('click',()=> trocarPagina('favoritos'));

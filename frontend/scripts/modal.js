@@ -19,7 +19,6 @@ function openModal(modalText, redirect){
 }
 
 function redirecionar(redirect) {
-
     window.location.href = redirect
 }
 
