@@ -84,7 +84,6 @@ export const cadastroPage = async(req, res) =>{
                 const btnJaTenhoCadastro = document.querySelector('.tenho__cadastro');
 
                 btnJaTenhoCadastro.addEventListener('click', async ()=>{
-                    console.log('entrou')
                     Note.closeAllNotes();
                     await loginPage();
                     Note.openNotes('Login: teste@teste.com<br>Senha: 123456<br>Caso prefira, você também pode realizar o seu próprio cadastro!')

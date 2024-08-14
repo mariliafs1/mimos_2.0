@@ -38,7 +38,6 @@ const getFavoritos = async (req, res) => {
       })
     );
     favoritos.push(...produtos);
-    console.log(favoritos);
     res
       .status(201)
       .json({ message: "Favoritos listados com sucesso", favoritos });

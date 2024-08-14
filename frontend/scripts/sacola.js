@@ -47,11 +47,9 @@ export const sacolaAutorizada = async(req, res) =>{
 }
 
 const listarProdutosSacola = async () =>{
-    console.log('listou')
     try {
 
         const {carrinho, quantidadeDeProdutosNaSacola} = await getProdutosSacola();
-        console.log(carrinho);
         iconNumeroDeProdutosSacola(carrinho);
 
         if(carrinho.length != 0){
@@ -229,7 +227,6 @@ async function atualizarSubTotalInputTexto(e){
         });
         const produtosNaSacola = await response.json();
        iconNumeroDeProdutosSacola(produtosNaSacola.carrinho);
-        console.log(sacolaIcon);
      
     } catch (error) {
         console.log(error)

@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 const registraUsuario = async (req, res) => {
   try {
     let { nome, cpf, dataNascimento, email, senha, senha_repetida } = req.body;
-    console.log(req.body);
     cpf = cpf.replace(/\.|-/g, "");
 
     const usuarioExiste = await Usuario.findOne({ email: email });
@@ -38,7 +37,6 @@ const loginUsuario = async (req, res) => {
   }
 
   const checarSenha = await bcrypt.compare(senha_login, usuario.senha);
-  console.log(usuario.senha);
   if (!checarSenha) {
     return res.status(422).json({ message: "Senha incorreta!" });
   }
@@ -63,36 +61,6 @@ const loginUsuario = async (req, res) => {
   }
 };
 
-// const getUsuarioPorId = async (req, res) => {
-//   const id = req.params.id;
-//   console.log(id);
-
-//   try {
-//     const usuario = await Usuario.findById(id).select("-senha");
-
-//     if (!usuario) {
-//       return res.status(404).json({ message: "Usuário não cadastrado" });
-//     }
-//     return res.status(200).json({ message: "logado com sucesso!", usuario });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// const getUsuarioPorLogin = async (req, res) => {
-//   const email = req.params.email_login;
-//   try {
-//     const usuario = await Usuario.findOne({ email: email }).select("-senha");
-
-//     if (!usuario) {
-//       return res.status(400).json({ message: "Usuário não cadastrado" });
-//     }
-//     return res.status(200).json({ message: "logado com sucesso!", usuario });
-//   } catch (error) {
-//     res.status(500).send({ error: error.message });
-//   }
-// };
-
 const deleteUsuarioPorId = async (req, res) => {
   const usuarioId = req.userId;
   try {
@@ -106,8 +74,6 @@ const deleteUsuarioPorId = async (req, res) => {
 const UsuarioController = {
   registraUsuario,
   loginUsuario,
-//   getUsuarioPorId,
-//   getUsuarioPorLogin,
   deleteUsuarioPorId,
 };
 

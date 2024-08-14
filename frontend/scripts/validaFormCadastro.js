@@ -26,7 +26,6 @@ export const iniciarCadastroPage = () => {
     
     if (btnJaTenhoCadastro) {
         btnJaTenhoCadastro.addEventListener('click', async () => {
-            console.log('entrou');
             Note.closeAllNotes();
             await loginPage();
             Note.openNotes('Login: teste@teste.com<br>Senha: 123456<br>Caso prefira, você também pode realizar o seu próprio cadastro!');
@@ -68,8 +67,6 @@ async function cadastrado(e) {
 
     const formData = new FormData(formCadastro);
     const usuario = Object.fromEntries(formData.entries());
-    console.log(usuario);
-   
 
     try {
         const response = await fetch(`${apiURL}/usuario/registraUsuario`, {

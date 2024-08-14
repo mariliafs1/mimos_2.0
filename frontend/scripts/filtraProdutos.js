@@ -37,7 +37,6 @@ const fechamentoDaCategoria = (e) => {
     // Reinicia o evento do botão para filtrar a categoria
     e.target.removeEventListener("click", fechamentoDaCategoria);
     e.target.addEventListener("click", filtrarCategoria);
-    console.log('Categoria fechada');
 }
 
 async function filtrarCategoria(e) {
@@ -82,7 +81,6 @@ async function filtrarPesquisa(){
     let response = await fetch("/produtos");
     const produtos = await response.json();
     const favoritos = await getFavoritos();
-    console.log(favoritos)
     buscaProdutoFiltrado.innerHTML = '';
     if(inputBuscar.value != ''){
         produtos.forEach((produto) => {
@@ -92,7 +90,6 @@ async function filtrarPesquisa(){
 
             let produtoBtn = buscaProdutoFiltrado.querySelectorAll('.produto__botao');
             produtoBtn.forEach( btn => {
-                console.log('aqui', btn);
                 btn.addEventListener('click', ()=>adicionaProdutoSacola(btn.id))
             })
 

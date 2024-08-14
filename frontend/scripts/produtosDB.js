@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const response = await fetch("/env");
   const env = await response.json();
   const apiURL = env.apiURL;
-  console.log('nao eh possivel')
   let carrosselUltimosLancamentos = document.querySelector(
     "#carrossel__ultimos__lancamentos"
   );
@@ -60,7 +59,6 @@ export const adicionaProdutoSacola = async (btnId) => {
     if (response.ok) {
       let iconSacola = document.querySelector(".numero__produtos__sacola");
       iconSacola.innerHTML = parseInt(iconSacola.innerHTML) + 1;
-      console.log("poduto adicionado na sacola");
       Modal.openModal("Produto adicionado na sacola!");
     } else {
       const errorData = await response.json();

@@ -52,7 +52,6 @@ const trocarPagina = async (pagina)=>{
         }
     }else if(pagina == 'login' && usuario.length > 0){
         let logout = document.querySelector('.logout');
-        console.log('nhaiim2')
         if(logout.classList.contains('hide')){
             logout.classList.remove('hide');
             // Note.closeAllNotes();

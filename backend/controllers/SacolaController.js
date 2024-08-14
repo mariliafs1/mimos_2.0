@@ -105,7 +105,6 @@ const updateSacola = async (req, res) => {
     });
 
     const produtoNoCarrinho = usuario.carrinho.find((item) => {
-      console.log(item.produto.toString(), produtoId);
       return item.produto._id.toString() == produtoId;
     });
 

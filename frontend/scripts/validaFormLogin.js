@@ -95,7 +95,6 @@ export async function loginAutenticacao(e, loginCadastro){
         });
 
         const data = await response.json();
-        console.log('Resposta do backend:', data);
 
         if(data.message == "Autenticação realizada com sucesso"){
             const token = data.token;
